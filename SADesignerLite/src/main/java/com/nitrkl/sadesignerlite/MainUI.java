@@ -48,6 +48,7 @@ public class MainUI extends javax.swing.JFrame {
         jToggleButton8 = new javax.swing.JToggleButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -233,6 +234,22 @@ public class MainUI extends javax.swing.JFrame {
                 jScrollPane1MouseEntered(evt);
             }
         });
+
+        jPanel2.setBackground(new java.awt.Color(245, 232, 100));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 960, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 296, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setViewportView(jPanel2);
+
         jSplitPane1.setTopComponent(jScrollPane1);
 
         jTextArea1.setEditable(false);
@@ -278,6 +295,11 @@ public class MainUI extends javax.swing.JFrame {
         jMenu2.add(jMenuItem6);
 
         jMenuItem8.setText("Image");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         FileMenu.add(jMenu2);
@@ -412,6 +434,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

@@ -52,7 +52,7 @@ public class MainUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        FileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -62,7 +62,7 @@ public class MainUI extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        HelpMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(200, 200, 200));
@@ -79,6 +79,11 @@ public class MainUI extends javax.swing.JFrame {
         jToggleButton1.setFocusable(false);
         jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jToggleButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jToggleButton1);
 
         jToggleButton2.setText("Data Store");
@@ -260,12 +265,7 @@ public class MainUI extends javax.swing.JFrame {
 
         jSplitPane1.setRightComponent(jScrollPane2);
 
-        jMenu1.setText("File");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
+        FileMenu.setText("File");
 
         jMenuItem1.setText("New");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -273,16 +273,16 @@ public class MainUI extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        FileMenu.add(jMenuItem1);
 
         jMenuItem2.setText("Open");
-        jMenu1.add(jMenuItem2);
+        FileMenu.add(jMenuItem2);
 
         jMenuItem3.setText("Save");
-        jMenu1.add(jMenuItem3);
+        FileMenu.add(jMenuItem3);
 
         jMenuItem4.setText("Save As");
-        jMenu1.add(jMenuItem4);
+        FileMenu.add(jMenuItem4);
 
         jMenu2.setText("Export");
 
@@ -302,18 +302,18 @@ public class MainUI extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem8);
 
-        jMenu1.add(jMenu2);
+        FileMenu.add(jMenu2);
 
         jMenuItem5.setText("Print");
-        jMenu1.add(jMenuItem5);
+        FileMenu.add(jMenuItem5);
 
         jMenuItem7.setText("Exit");
-        jMenu1.add(jMenuItem7);
+        FileMenu.add(jMenuItem7);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(FileMenu);
 
-        jMenu3.setText("Help");
-        jMenuBar1.add(jMenu3);
+        HelpMenu.setText("Help");
+        jMenuBar1.add(HelpMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -377,13 +377,10 @@ public class MainUI extends javax.swing.JFrame {
         jScrollPane1.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
     }//GEN-LAST:event_jScrollPane1MouseEntered
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+        jToggleButton1.setSelected(!jToggleButton1.isSelected());
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,12 +418,12 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu FileMenu;
+    private javax.swing.JMenu HelpMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

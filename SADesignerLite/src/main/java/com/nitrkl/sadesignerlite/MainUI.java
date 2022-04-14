@@ -5,6 +5,7 @@
 package com.nitrkl.sadesignerlite;
 
 import java.awt.Cursor;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -17,6 +18,15 @@ public class MainUI extends javax.swing.JFrame {
      */
     public MainUI() {
         initComponents();
+        this.buttons = new javax.swing.JToggleButton[]{
+            DataFlowButton, 
+            DataStoreButton, 
+            DataProcessButton, 
+            ExternalEntityButton,
+            ExternalOutputButton,
+            LabelButton
+        };
+        WorkArea.setVisible(false);
     }
 
     /**
@@ -28,229 +38,253 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jToolBar1 = new javax.swing.JToolBar();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
+        Ribbon = new javax.swing.JPanel();
+        InsertShapesText = new javax.swing.JLabel();
+        ShapeBar = new javax.swing.JToolBar();
+        DataFlowButton = new javax.swing.JToggleButton();
+        DataStoreButton = new javax.swing.JToggleButton();
+        DataProcessButton = new javax.swing.JToggleButton();
+        ExternalEntityButton = new javax.swing.JToggleButton();
+        ExternalOutputButton = new javax.swing.JToggleButton();
+        LabelButton = new javax.swing.JToggleButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
+        DebugText = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jToolBar2 = new javax.swing.JToolBar();
-        jToggleButton9 = new javax.swing.JToggleButton();
-        jLabel3 = new javax.swing.JLabel();
+        DebugBar = new javax.swing.JToolBar();
+        DebugButton = new javax.swing.JToggleButton();
+        DecomposeText = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jToolBar3 = new javax.swing.JToolBar();
-        jToggleButton8 = new javax.swing.JToggleButton();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        DecomposeBar = new javax.swing.JToolBar();
+        DecomposeButton = new javax.swing.JToggleButton();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jPanel3 = new javax.swing.JPanel();
+        WorkArea = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        LogArea = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        NewItem = new javax.swing.JMenuItem();
+        OpenItem = new javax.swing.JMenuItem();
+        SaveItem = new javax.swing.JMenuItem();
+        SaveAsItem = new javax.swing.JMenuItem();
+        ExportMenu = new javax.swing.JMenu();
+        DDItem = new javax.swing.JMenuItem();
+        ImageItem = new javax.swing.JMenuItem();
+        PrintItem = new javax.swing.JMenuItem();
+        CloseItem = new javax.swing.JMenuItem();
+        ExitItem = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
+        HelpItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(200, 200, 200));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        Ribbon.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Insert Shapes");
+        InsertShapesText.setText("Insert Shapes");
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar1.setRollover(true);
-        jToolBar1.setAutoscrolls(true);
+        ShapeBar.setBackground(new java.awt.Color(255, 255, 255));
+        ShapeBar.setRollover(true);
+        ShapeBar.setAutoscrolls(true);
 
-        jToggleButton1.setText("Data Flow");
-        jToggleButton1.setFocusable(false);
-        jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        DataFlowButton.setText("Data Flow");
+        DataFlowButton.setFocusable(false);
+        DataFlowButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DataFlowButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        DataFlowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                DataFlowButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(jToggleButton1);
+        ShapeBar.add(DataFlowButton);
 
-        jToggleButton2.setText("Data Store");
-        jToggleButton2.setFocusable(false);
-        jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        DataStoreButton.setText("Data Store");
+        DataStoreButton.setFocusable(false);
+        DataStoreButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DataStoreButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        DataStoreButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                DataStoreButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(jToggleButton2);
+        ShapeBar.add(DataStoreButton);
 
-        jToggleButton3.setText("Data Process");
-        jToggleButton3.setFocusable(false);
-        jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+        DataProcessButton.setText("Data Process");
+        DataProcessButton.setFocusable(false);
+        DataProcessButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DataProcessButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        DataProcessButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton3ActionPerformed(evt);
+                DataProcessButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(jToggleButton3);
+        ShapeBar.add(DataProcessButton);
 
-        jToggleButton4.setText("External Entity");
-        jToggleButton4.setFocusable(false);
-        jToggleButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jToggleButton4);
-
-        jToggleButton5.setText("External Output");
-        jToggleButton5.setFocusable(false);
-        jToggleButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+        ExternalEntityButton.setText("External Entity");
+        ExternalEntityButton.setFocusable(false);
+        ExternalEntityButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ExternalEntityButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ExternalEntityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton5ActionPerformed(evt);
+                ExternalEntityButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(jToggleButton5);
+        ShapeBar.add(ExternalEntityButton);
 
-        jToggleButton6.setText("Label");
-        jToggleButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jToggleButton6);
+        ExternalOutputButton.setText("External Output");
+        ExternalOutputButton.setFocusable(false);
+        ExternalOutputButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ExternalOutputButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ExternalOutputButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExternalOutputButtonActionPerformed(evt);
+            }
+        });
+        ShapeBar.add(ExternalOutputButton);
+
+        LabelButton.setText("Label");
+        LabelButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        LabelButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        LabelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LabelButtonActionPerformed(evt);
+            }
+        });
+        ShapeBar.add(LabelButton);
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jLabel2.setText("Debug");
+        DebugText.setText("Debug");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jToolBar2.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar2.setBorder(null);
-        jToolBar2.setRollover(true);
+        DebugBar.setBackground(new java.awt.Color(255, 255, 255));
+        DebugBar.setBorder(null);
+        DebugBar.setRollover(true);
 
-        jToggleButton9.setText("Debug");
-        jToggleButton9.setBorder(null);
-        jToggleButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton9.addActionListener(new java.awt.event.ActionListener() {
+        DebugButton.setText("Debug");
+        DebugButton.setBorder(null);
+        DebugButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DebugButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        DebugButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton9ActionPerformed(evt);
+                DebugButtonActionPerformed(evt);
             }
         });
-        jToolBar2.add(jToggleButton9);
+        DebugBar.add(DebugButton);
 
-        jLabel3.setText("Decompose");
+        DecomposeText.setText("Decompose");
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jToolBar3.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar3.setBorder(null);
-        jToolBar3.setRollover(true);
+        DecomposeBar.setBackground(new java.awt.Color(255, 255, 255));
+        DecomposeBar.setBorder(null);
+        DecomposeBar.setRollover(true);
 
-        jToggleButton8.setText("Decompose");
-        jToggleButton8.setBorder(null);
-        jToggleButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+        DecomposeButton.setText("Decompose");
+        DecomposeButton.setBorder(null);
+        DecomposeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DecomposeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        DecomposeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
+                DecomposeButtonActionPerformed(evt);
             }
         });
-        jToolBar3.add(jToggleButton8);
+        DecomposeBar.add(DecomposeButton);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout RibbonLayout = new javax.swing.GroupLayout(Ribbon);
+        Ribbon.setLayout(RibbonLayout);
+        RibbonLayout.setHorizontalGroup(
+            RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RibbonLayout.createSequentialGroup()
+                .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RibbonLayout.createSequentialGroup()
                         .addGap(174, 174, 174)
-                        .addComponent(jLabel1))
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(InsertShapesText))
+                    .addComponent(ShapeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(DebugText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(DebugBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DecomposeText)
+                    .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(338, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        RibbonLayout.setVerticalGroup(
+            RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RibbonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RibbonLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                        .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RibbonLayout.createSequentialGroup()
+                                .addComponent(InsertShapesText)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(ShapeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RibbonLayout.createSequentialGroup()
+                                .addComponent(DebugText)
                                 .addGap(8, 8, 8)
-                                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                                .addComponent(DebugBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(RibbonLayout.createSequentialGroup()
+                        .addComponent(DecomposeText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addComponent(jSeparator3)
         );
 
-        jSplitPane1.setDividerLocation(300);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jSplitPane1.setMinimumSize(new java.awt.Dimension(100, 100));
+        jSplitPane2.setDividerLocation(300);
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jScrollPane1MouseEntered(evt);
-            }
-        });
+        WorkArea.setBackground(new java.awt.Color(255, 255, 255));
+        WorkArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel2.setBackground(new java.awt.Color(245, 232, 100));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        jPanel4.setMaximumSize(new java.awt.Dimension(1024, 728));
+        jPanel4.setMinimumSize(new java.awt.Dimension(1024, 728));
+        jPanel4.setPreferredSize(new java.awt.Dimension(1024, 728));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 960, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 728, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jPanel2);
+        WorkArea.setViewportView(jPanel4);
 
-        jSplitPane1.setTopComponent(jScrollPane1);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(WorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(WorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
+
+        jSplitPane2.setLeftComponent(jPanel3);
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -261,58 +295,83 @@ public class MainUI extends javax.swing.JFrame {
                 jTextArea1MouseEntered(evt);
             }
         });
-        jScrollPane2.setViewportView(jTextArea1);
+        LogArea.setViewportView(jTextArea1);
 
-        jSplitPane1.setRightComponent(jScrollPane2);
+        jSplitPane2.setRightComponent(LogArea);
 
         FileMenu.setText("File");
-
-        jMenuItem1.setText("New");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        FileMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
-        FileMenu.add(jMenuItem1);
 
-        jMenuItem2.setText("Open");
-        FileMenu.add(jMenuItem2);
-
-        jMenuItem3.setText("Save");
-        FileMenu.add(jMenuItem3);
-
-        jMenuItem4.setText("Save As");
-        FileMenu.add(jMenuItem4);
-
-        jMenu2.setText("Export");
-
-        jMenuItem6.setText("Data Dictionary");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        NewItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        NewItem.setText("New");
+        NewItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                NewItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        FileMenu.add(NewItem);
 
-        jMenuItem8.setText("Image");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        OpenItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        OpenItem.setText("Open");
+        FileMenu.add(OpenItem);
+
+        SaveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        SaveItem.setText("Save");
+        FileMenu.add(SaveItem);
+
+        SaveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        SaveAsItem.setText("Save As");
+        FileMenu.add(SaveAsItem);
+
+        ExportMenu.setText("Export");
+
+        DDItem.setText("Data Dictionary");
+        DDItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                DDItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        ExportMenu.add(DDItem);
 
-        FileMenu.add(jMenu2);
+        ImageItem.setText("Image");
+        ImageItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImageItemActionPerformed(evt);
+            }
+        });
+        ExportMenu.add(ImageItem);
 
-        jMenuItem5.setText("Print");
-        FileMenu.add(jMenuItem5);
+        FileMenu.add(ExportMenu);
 
-        jMenuItem7.setText("Exit");
-        FileMenu.add(jMenuItem7);
+        PrintItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        PrintItem.setText("Print");
+        FileMenu.add(PrintItem);
+
+        CloseItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        CloseItem.setText("Close");
+        FileMenu.add(CloseItem);
+
+        ExitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        ExitItem.setText("Exit");
+        FileMenu.add(ExitItem);
 
         jMenuBar1.add(FileMenu);
 
         HelpMenu.setText("Help");
+
+        HelpItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        HelpItem.setText("Help");
+        HelpItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HelpItemActionPerformed(evt);
+            }
+        });
+        HelpMenu.add(HelpItem);
+
         jMenuBar1.add(HelpMenu);
 
         setJMenuBar(jMenuBar1);
@@ -321,66 +380,92 @@ public class MainUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(Ribbon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSplitPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Ribbon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+    private javax.swing.JToggleButton[] buttons;
+    
+    private void DecomposeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecomposeButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
+        DecomposeButton.setSelected(false);
+    }//GEN-LAST:event_DecomposeButtonActionPerformed
 
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+    private void ExternalOutputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExternalOutputButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton5ActionPerformed
+        selectOne(ExternalOutputButton, buttons);
+    }//GEN-LAST:event_ExternalOutputButtonActionPerformed
 
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    private void DataProcessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProcessButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton3ActionPerformed
+        selectOne(DataProcessButton, buttons);
+    }//GEN-LAST:event_DataProcessButtonActionPerformed
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    private void DataStoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataStoreButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
+        selectOne(DataStoreButton, buttons);
+    }//GEN-LAST:event_DataStoreButtonActionPerformed
 
-    private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
+    private void DebugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DebugButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton9ActionPerformed
+        DebugButton.setSelected(false);
+    }//GEN-LAST:event_DebugButtonActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void NewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        WorkArea.setVisible(true);
+        jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
+    }//GEN-LAST:event_NewItemActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void DDItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DDItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_DDItemActionPerformed
 
     private void jTextArea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseEntered
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTextArea1MouseEntered
 
-    private void jScrollPane1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseEntered
+    private void selectOne(javax.swing.JToggleButton jtb, 
+            javax.swing.JToggleButton[] jtbs) {
+        for (javax.swing.JToggleButton b: jtbs) {
+            if (b == jtb) {
+                b.setSelected(b.isSelected());
+            } else {
+                b.setSelected(false);
+            }
+        }
+    }
+    
+    private void DataFlowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataFlowButtonActionPerformed
         // TODO add your handling code here:
-        jScrollPane1.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-    }//GEN-LAST:event_jScrollPane1MouseEntered
+        selectOne(DataFlowButton, buttons);
+    }//GEN-LAST:event_DataFlowButtonActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void ExternalEntityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExternalEntityButtonActionPerformed
         // TODO add your handling code here:
-        jToggleButton1.setSelected(!jToggleButton1.isSelected());
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        selectOne(ExternalEntityButton, buttons);
+    }//GEN-LAST:event_ExternalEntityButtonActionPerformed
+
+    private void LabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LabelButtonActionPerformed
+        // TODO add your handling code here:
+        selectOne(LabelButton, buttons);
+    }//GEN-LAST:event_LabelButtonActionPerformed
+
+    private void HelpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HelpItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,40 +503,43 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem CloseItem;
+    private javax.swing.JMenuItem DDItem;
+    private javax.swing.JToggleButton DataFlowButton;
+    private javax.swing.JToggleButton DataProcessButton;
+    private javax.swing.JToggleButton DataStoreButton;
+    private javax.swing.JToolBar DebugBar;
+    private javax.swing.JToggleButton DebugButton;
+    private javax.swing.JLabel DebugText;
+    private javax.swing.JToolBar DecomposeBar;
+    private javax.swing.JToggleButton DecomposeButton;
+    private javax.swing.JLabel DecomposeText;
+    private javax.swing.JMenuItem ExitItem;
+    private javax.swing.JMenu ExportMenu;
+    private javax.swing.JToggleButton ExternalEntityButton;
+    private javax.swing.JToggleButton ExternalOutputButton;
     private javax.swing.JMenu FileMenu;
+    private javax.swing.JMenuItem HelpItem;
     private javax.swing.JMenu HelpMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem ImageItem;
+    private javax.swing.JLabel InsertShapesText;
+    private javax.swing.JToggleButton LabelButton;
+    private javax.swing.JScrollPane LogArea;
+    private javax.swing.JMenuItem NewItem;
+    private javax.swing.JMenuItem OpenItem;
+    private javax.swing.JMenuItem PrintItem;
+    private javax.swing.JPanel Ribbon;
+    private javax.swing.JMenuItem SaveAsItem;
+    private javax.swing.JMenuItem SaveItem;
+    private javax.swing.JToolBar ShapeBar;
+    private javax.swing.JScrollPane WorkArea;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton8;
-    private javax.swing.JToggleButton jToggleButton9;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
-    private javax.swing.JToolBar jToolBar3;
     // End of variables declaration//GEN-END:variables
 }

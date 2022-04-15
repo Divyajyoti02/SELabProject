@@ -4,20 +4,15 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author hp
  */
-public class Position {
-    int x, y;
-    
-    public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
 
-    @Override
-    public String toString() {
-        return "(" + x + ", " + y + ')';
-    }    
+class Shape {
+    Type type;
+    WorkArea decompose;
+    ArrayList<Shape> inDataFlow, outDataFlow;
 }

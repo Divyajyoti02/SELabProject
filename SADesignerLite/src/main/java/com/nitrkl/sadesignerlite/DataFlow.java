@@ -8,16 +8,10 @@ package com.nitrkl.sadesignerlite;
  *
  * @author hp
  */
-public class Position {
-    int x, y;
+class DataFlow extends Shape {
+    ShapeAnchor start, end;
     
-    public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public DataFlow() {
+        type = Type.DataFlow;
     }
-
-    @Override
-    public String toString() {
-        return "(" + x + ", " + y + ')';
-    }    
 }

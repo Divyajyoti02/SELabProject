@@ -26,6 +26,7 @@ public class MainUI extends javax.swing.JFrame {
             ExternalOutputButton,
             LabelButton
         };
+        this.setTitle("SADesignerLite");
         WorkArea.setVisible(false);
     }
 
@@ -338,11 +339,6 @@ public class MainUI extends javax.swing.JFrame {
         ExportMenu.add(DDItem);
 
         ImageItem.setText("Image");
-        ImageItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImageItemActionPerformed(evt);
-            }
-        });
         ExportMenu.add(ImageItem);
 
         FileMenu.add(ExportMenu);
@@ -425,6 +421,7 @@ public class MainUI extends javax.swing.JFrame {
     private void NewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemActionPerformed
         // TODO add your handling code here:
         WorkArea.setVisible(true);
+        this.setTitle("SADesignerLite - Untitled");
         jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
     }//GEN-LAST:event_NewItemActionPerformed
 

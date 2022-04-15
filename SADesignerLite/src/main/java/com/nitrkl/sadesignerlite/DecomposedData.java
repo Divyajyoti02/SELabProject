@@ -4,17 +4,10 @@
  */
 package com.nitrkl.sadesignerlite;
 
-import java.util.ArrayList;
-
 /**
  *
- * @author hp
+ * @author Leo R. Rodrigues
  */
-
-class Shape {
-    String Name;
-    Positions position;
-    Type type;
-    WorkArea decompose;
-    ArrayList<Shape> inDataFlow, outDataFlow;
+public class DecomposedData {
+    
 }

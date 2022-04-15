@@ -301,11 +301,6 @@ public class MainUI extends javax.swing.JFrame {
         jSplitPane2.setRightComponent(LogArea);
 
         FileMenu.setText("File");
-        FileMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
-            }
-        });
 
         NewItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         NewItem.setText("New");

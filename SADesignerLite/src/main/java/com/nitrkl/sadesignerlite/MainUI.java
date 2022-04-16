@@ -28,7 +28,7 @@ public class MainUI extends javax.swing.JFrame {
             LabelButton
         };
         this.setTitle("SADesignerLite");
-        WorkArea.setVisible(false);
+        WorkSpace.setVisible(false);
     }
 
     /**
@@ -60,8 +60,7 @@ public class MainUI extends javax.swing.JFrame {
         DecomposeButton = new javax.swing.JToggleButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
-        WorkArea = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
+        WorkSpace = new javax.swing.JScrollPane();
         LogArea = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -253,37 +252,18 @@ public class MainUI extends javax.swing.JFrame {
         jSplitPane2.setDividerLocation(300);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        WorkArea.setBackground(new java.awt.Color(255, 255, 255));
-        WorkArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
-        jPanel4.setMaximumSize(new java.awt.Dimension(1024, 728));
-        jPanel4.setMinimumSize(new java.awt.Dimension(1024, 728));
-        jPanel4.setPreferredSize(new java.awt.Dimension(1024, 728));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
-        );
-
-        WorkArea.setViewportView(jPanel4);
+        WorkSpace.setBackground(new java.awt.Color(255, 255, 255));
+        WorkSpace.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(WorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+            .addComponent(WorkSpace, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(WorkArea, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(WorkSpace, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         jSplitPane2.setLeftComponent(jPanel3);
@@ -388,6 +368,7 @@ public class MainUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private javax.swing.JToggleButton[] buttons;
+    private WorkArea workArea;
     
     private void DecomposeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecomposeButtonActionPerformed
         // TODO add your handling code here:
@@ -416,7 +397,9 @@ public class MainUI extends javax.swing.JFrame {
 
     private void NewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemActionPerformed
         // TODO add your handling code here:
-        WorkArea.setVisible(true);
+        workArea = new WorkArea();
+        WorkSpace.getViewport().add(workArea);
+        WorkSpace.setVisible(true);
         this.setTitle("SADesignerLite - Untitled");
         jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
     }//GEN-LAST:event_NewItemActionPerformed
@@ -525,10 +508,9 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem SaveAsItem;
     private javax.swing.JMenuItem SaveItem;
     private javax.swing.JToolBar ShapeBar;
-    private javax.swing.JScrollPane WorkArea;
+    private javax.swing.JScrollPane WorkSpace;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

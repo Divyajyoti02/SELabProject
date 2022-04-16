@@ -4,6 +4,8 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,14 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         dfd = new DFDBackend();
         dd = new DDBackend();
         isChanged = false;
+        this.setBackground(Color.white);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        Dimension d = new Dimension(1024, 728);
+        this.setMinimumSize(d);
+        this.setMaximumSize(d);
+        this.setPreferredSize(d);
+        this.setVisible(true);
+        this.setSize(1024, 728);
     }
     
     public void insertDataFlow(Positions ps) {

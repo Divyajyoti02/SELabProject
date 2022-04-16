@@ -8,7 +8,7 @@ package com.nitrkl.sadesignerlite;
  *
  * @author hp
  */
-class DataFlow extends Shape {
+class DataFlow extends ShapeObj {
     ShapeAnchor start, end;
     
     public DataFlow() {

@@ -16,6 +16,8 @@ public class Position {
         this.y = y;
     }
 
+    public Position() {}
+
     @Override
     public String toString() {
         return "(" + x + ", " + y + ')';

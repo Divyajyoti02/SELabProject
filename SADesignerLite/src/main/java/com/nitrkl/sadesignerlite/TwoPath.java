@@ -9,9 +9,9 @@ package com.nitrkl.sadesignerlite;
  * @author Leo R. Rodrigues
  */
 public class TwoPath {
-    Shape Uedge, Vedge;
+    ShapeObj Uedge, Vedge;
 
-    public TwoPath(Shape Uedge, Shape Vedge) {
+    public TwoPath(ShapeObj Uedge, ShapeObj Vedge) {
         this.Uedge = Uedge;
         this.Vedge = Vedge;
     }

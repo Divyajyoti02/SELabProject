@@ -9,6 +9,11 @@ package com.nitrkl.sadesignerlite;
  * @author hp
  */
 class ShapeAnchor {
-    Shape shape;
-    int anchor;
+    ShapeObj shape;
+    AnchorType anchor;
+
+    public ShapeAnchor(ShapeObj shape, AnchorType anchor) {
+        this.shape = shape;
+        this.anchor = anchor;
+    }
 }

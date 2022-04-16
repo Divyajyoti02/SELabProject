@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author hp
  */
 
-class Shape {
+class ShapeObj {
     String Name;
     Positions position;
     Type type;
     WorkArea decompose;
-    ArrayList<Shape> inDataFlow, outDataFlow;
+    ArrayList<ShapeObj> inDataFlow, outDataFlow;
 }

@@ -36,8 +36,8 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         df.start = dfd.findShapeAnchor(ps.topLeft);
         df.end = dfd.findShapeAnchor(ps.bottomRight);
         if (
-            df.start != null &&
-            df.end != null &&
+            df.start.shape != null &&
+            df.end.shape != null &&
             (
                 df.start.shape.type == Type.DataProcess ||
                 df.end.shape.type == Type.DataProcess

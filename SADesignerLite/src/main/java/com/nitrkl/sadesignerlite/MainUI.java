@@ -4,9 +4,6 @@
  */
 package com.nitrkl.sadesignerlite;
 
-import java.awt.Cursor;
-import java.awt.event.ActionEvent;
-
 /**
  *
  * @author hp
@@ -78,8 +75,13 @@ public class MainUI extends javax.swing.JFrame {
         HelpMenu = new javax.swing.JMenu();
         HelpItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(200, 200, 200));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         Ribbon.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -298,10 +300,20 @@ public class MainUI extends javax.swing.JFrame {
 
         SaveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         SaveItem.setText("Save");
+        SaveItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveItemActionPerformed(evt);
+            }
+        });
         FileMenu.add(SaveItem);
 
         SaveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         SaveAsItem.setText("Save As");
+        SaveAsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveAsItemActionPerformed(evt);
+            }
+        });
         FileMenu.add(SaveAsItem);
 
         ExportMenu.setText("Export");
@@ -325,10 +337,20 @@ public class MainUI extends javax.swing.JFrame {
 
         CloseItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         CloseItem.setText("Close");
+        CloseItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseItemActionPerformed(evt);
+            }
+        });
         FileMenu.add(CloseItem);
 
         ExitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_DOWN_MASK));
         ExitItem.setText("Exit");
+        ExitItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitItemActionPerformed(evt);
+            }
+        });
         FileMenu.add(ExitItem);
 
         jMenuBar1.add(FileMenu);
@@ -441,7 +463,44 @@ public class MainUI extends javax.swing.JFrame {
 
     private void HelpItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpItemActionPerformed
         // TODO add your handling code here:
+        HelpUI helpUI = new HelpUI();
+        helpUI.setTitle("Help");
+        helpUI.setVisible(true);
     }//GEN-LAST:event_HelpItemActionPerformed
+
+    private void CloseItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseItemActionPerformed
+        // TODO add your handling code here:
+        if (workArea == null || !workArea.isChanged || workArea.savePrompt()) {
+            WorkSpace.getViewport().remove(workArea);
+            jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
+            WorkSpace.setVisible(false);
+            this.setTitle("SADesignerLite");
+        }
+    }//GEN-LAST:event_CloseItemActionPerformed
+
+    private void ExitItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitItemActionPerformed
+        // TODO add your handling code here:
+        formWindowClosing(null);
+    }//GEN-LAST:event_ExitItemActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if (workArea == null || !workArea.isChanged || workArea.savePrompt()) {
+            this.dispose();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void SaveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveItemActionPerformed
+        // TODO add your handling code here:
+        if (workArea.title == null) workArea.saveAs();
+        else workArea.save();
+    }//GEN-LAST:event_SaveItemActionPerformed
+
+    private void SaveAsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsItemActionPerformed
+        // TODO add your handling code here:
+        workArea.saveAs();
+    }//GEN-LAST:event_SaveAsItemActionPerformed
 
     /**
      * @param args the command line arguments

@@ -16,6 +16,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     DFDBackend dfd;
     DDBackend dd;
     boolean isChanged;
+    String title;
 
     WorkArea() {
         dfd = new DFDBackend();
@@ -171,6 +172,18 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
 
     void display() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    boolean savePrompt() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void saveAs() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void save() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

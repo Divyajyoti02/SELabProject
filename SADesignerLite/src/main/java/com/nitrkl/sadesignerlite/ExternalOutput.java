@@ -8,6 +8,4 @@ package com.nitrkl.sadesignerlite;
  *
  * @author hp
  */
-class Symbol {
-    
-}
+class ExternalOutput extends ShapeObj {}

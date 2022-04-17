@@ -4,13 +4,8 @@
  */
 package com.nitrkl.sadesignerlite;
 
-import java.util.HashMap;
-import java.util.HashSet;
-
 /**
  *
  * @author hp
  */
-class DDBackend {
-    HashMap<String, Type> Names;
-}
+class DataProcess extends ShapeObj {}

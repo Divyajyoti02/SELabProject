@@ -12,9 +12,11 @@ import java.util.ArrayList;
  */
 class DFDBackend {
     ArrayList<ShapeObj> arrShapes;
+    UndirGraph g;
     
     DFDBackend() {
         arrShapes = new ArrayList<ShapeObj>();
+        g = new UndirGraph();
     }
     
     int indexOfSmallest(int[] array) {
@@ -76,8 +78,16 @@ class DFDBackend {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private ShapeAnchor chooseList(ArrayList<ShapeAnchor> listShapes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    ShapeAnchor chooseList(ArrayList<ShapeAnchor> listShapes) {
+        ArrayList<String> sList = new ArrayList<>();
+        for (ShapeAnchor sa : listShapes) sList.add(sa.shape.Name);
+        String name = javax.swing.JOptionPane.showInputDialog(
+            null, "Choose shape", sList
+        );
+        for (ShapeAnchor sa : listShapes) {
+            if (sa.shape.Name.equals(name)) return sa;
+        }
+        return null;
     }
     
 }

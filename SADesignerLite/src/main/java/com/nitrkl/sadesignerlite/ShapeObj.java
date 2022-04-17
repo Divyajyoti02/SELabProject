@@ -5,6 +5,7 @@
 package com.nitrkl.sadesignerlite;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -17,4 +18,27 @@ class ShapeObj {
     Type type;
     WorkArea decompose;
     ArrayList<ShapeObj> inDataFlow, outDataFlow;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.Name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ShapeObj other = (ShapeObj) obj;
+        return Objects.equals(this.Name, other.Name);
+    }
+    
 }

@@ -4,19 +4,10 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Leo R. Rodrigues
  */
-public class Paths {
-    Path[] paths;
-
-    public Paths(Path[] paths) {
-        this.paths = paths;
-    }
-
-    @Override
-    public String toString() {
-        return "Paths{" + "paths=" + paths + '}';
-    }
-}
+public class Paths {ArrayList<Path> paths;}

@@ -5,6 +5,7 @@
 package com.nitrkl.sadesignerlite;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 class DFDBackend {
     ArrayList<ShapeObj> arrShapes;
     UndirGraph g;
+    HashMap<TwoPath, Paths> connects;
     
     DFDBackend() {
         arrShapes = new ArrayList<ShapeObj>();
@@ -75,7 +77,58 @@ class DFDBackend {
     }
 
     void updateConnects(DataFlow df) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ShapeObj s1 = df.start.shape, s2 = df.end.shape;
+        if (s1.type == Type.DataProcess) {
+            if (s2.type == Type.DataProcess) {
+                TwoPath tp1 = new TwoPath(s1, s2), tp2 = new TwoPath(s2, s1);
+                if (!connects.containsKey(tp1)) connects.put(tp1, new Paths());
+                connects.get(tp1).paths.add(new Path(df));
+                if (!connects.containsKey(tp2)) connects.put(tp2, new Paths());
+                connects.get(tp2).paths.add(new Path(df));
+            } else {
+                TwoPath tp1 = new TwoPath(s1, s2);
+                if (!connects.containsKey(tp1)) connects.put(tp1, new Paths());
+                connects.get(tp1).paths.add(new Path(df));
+                for (TwoPath key: connects.keySet()) {
+                    if (
+                        key.Uedge.equals(s2) && 
+                        !connects.get(key).paths.isEmpty()
+                    ) {
+                        Paths ps = new Paths();
+                        ps.paths.add(new Path(new TwoPath(s1, key.Vedge)));
+                        for (Path p: connects.get(key).paths) {
+                            if (p.pType == PathType.OnePath) {
+                                connects.get(
+                                    new TwoPath(s1, key.Vedge)
+                                ).paths.add(
+                                    new Path(new TwoPath(df, p.onePath))
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            TwoPath tp1 = new TwoPath(s2, s1);
+            if (!connects.containsKey(tp1)) connects.put(tp1, new Paths());
+            connects.get(tp1).paths.add(new Path(df));
+            for (TwoPath key: connects.keySet()) {
+                if (
+                    key.Vedge.equals(s1) && 
+                    !connects.get(key).paths.isEmpty()
+                ) {
+                    Paths ps = new Paths();
+                    ps.paths.add(new Path(new TwoPath(key.Vedge,s2)));
+                    for (Path p: connects.get(key).paths) {
+                        if (p.pType == PathType.OnePath) {
+                            connects.get(
+                                new TwoPath(key.Uedge, s2)
+                            ).paths.add(new Path(new TwoPath(p.onePath, df)));
+                        }
+                    }
+                }
+            }
+        }
     }
 
     ShapeAnchor chooseList(ArrayList<ShapeAnchor> listShapes) {

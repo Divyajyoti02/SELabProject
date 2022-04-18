@@ -148,6 +148,35 @@ public class DDWizardUI extends javax.swing.JFrame {
             );
             NameField.requestFocusInWindow();
         }
+        if (jComboBox1.getSelectedItem().toString().equals("Choose DataType")){
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid data type Selected!", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            jComboBox1.requestFocusInWindow();
+        }
+        int jspin1 = (Integer) jSpinner1.getValue();
+        int jspin2 = (Integer) jSpinner2.getValue();
+        if(jspin1>jspin2){
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Min is greater than max!", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            jSpinner2.requestFocusInWindow();
+        }
+        if(jspin1==0&&jspin2==0){
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Both values can't be zero!", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            jSpinner2.requestFocusInWindow();
+        }
     }//GEN-LAST:event_SubmitActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

@@ -7,6 +7,7 @@ package com.nitrkl.sadesignerlite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.Serializable;
+import javax.swing.Action;
 
 /**
  *
@@ -17,6 +18,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     DDBackend dd;
     boolean isChanged;
     String title;
+    int decomposeLevel;
 
     WorkArea() {
         dfd = new DFDBackend();
@@ -30,6 +32,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         this.setPreferredSize(d);
         this.setVisible(true);
         this.setSize(1024, 728);
+        decomposeLevel = 0;
     }
     
     void insertDataFlow(Positions ps) {
@@ -184,6 +187,10 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
 
     void save() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    Action deleteShape() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

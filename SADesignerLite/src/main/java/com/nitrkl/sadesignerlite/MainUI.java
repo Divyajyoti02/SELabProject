@@ -420,6 +420,12 @@ public class MainUI extends javax.swing.JFrame {
     private void NewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemActionPerformed
         // TODO add your handling code here:
         workArea = new WorkArea();
+        workArea.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            javax.swing.KeyStroke.getKeyStroke(
+                java.awt.event.KeyEvent.VK_DELETE, 0
+            ), "deleteShape"
+        );
+        workArea.getActionMap().put("deleteShape", new deleteShape());
         WorkSpace.getViewport().add(workArea);
         WorkSpace.setVisible(true);
         this.setTitle("SADesignerLite - Untitled");
@@ -576,4 +582,12 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private class deleteShape extends javax.swing.AbstractAction {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent event) {
+            System.out.println("Deleting");
+            workArea.deleteShape();
+        }
+    }
 }

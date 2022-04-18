@@ -4,6 +4,8 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.awt.Point;
+
 /**
  *
  * @author hp
@@ -14,6 +16,11 @@ public class Position {
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+    
+    public Position(Point p) {
+        this.x = p.x;
+        this.y = p.y;
     }
 
     public Position() {}

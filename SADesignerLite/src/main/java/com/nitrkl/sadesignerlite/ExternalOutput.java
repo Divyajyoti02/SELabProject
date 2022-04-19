@@ -27,7 +27,6 @@ class ExternalOutput extends ShapeObj {
     }
     
     public void draw(Graphics g){
-        System.out.println("DrawinfpaRAL");
         int x1 = position.topLeft.x , y1 = position.topLeft.y, x2 = position.bottomRight.x, y2 = position.bottomRight.y;
         if (x1 < x2 && y1 < y2) {
             int xs[] = {(3*x1 + x2)/4, x2, (x1+ 3*x2)/4, x1}, ys[] = {y1, y1, y2, y2};

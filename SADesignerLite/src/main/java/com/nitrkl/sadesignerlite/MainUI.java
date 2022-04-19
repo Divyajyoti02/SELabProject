@@ -467,6 +467,7 @@ public class MainUI extends javax.swing.JFrame {
     
     private void DataFlowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataFlowButtonActionPerformed
         // TODO add your handling code here:
+        if (!DataFlowButton.isSelected()) workArea.mode = 0; else workArea.mode = 4;
         selectOne(DataFlowButton, buttons);
     }//GEN-LAST:event_DataFlowButtonActionPerformed
 

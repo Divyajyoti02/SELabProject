@@ -36,20 +36,19 @@ public class GraphicController extends MouseInputAdapter{
     ShapeObj x;
     //For connstructing new symbol
     ShapeObj temp;
+    ShapeAnchor sa1, sa2;
     
     //For constructing new arrow
     DataFlow tempa;
     
     @Override
     public void mouseMoved(MouseEvent e) {
-        System.out.println("CHECK -- Mouse moved " + e.getPoint());
         x = component.dfd.findShapeAnchor(e.getPoint()).shape; //sel = getsymbolindex(e.getPoint());
         component.currShape = x;
         //component.repaint();
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("CHECK -- Mouse clicked once rn " + e.getPoint());
          x = component.dfd.findShapeAnchor(p).shape;
         /*if (SwingUtilities.isRightMouseButton(e)) {
             PopUpDemo menu = new PopUpDemo();
@@ -86,7 +85,6 @@ public class GraphicController extends MouseInputAdapter{
         }
     }
     public void mousePressed(MouseEvent e) {
-        System.out.println("CHECK -- Mouse pressed " + e.getPoint());
         x = null;
         p = e.getPoint();
         if(component.mode != 4)
@@ -114,6 +112,7 @@ public class GraphicController extends MouseInputAdapter{
                 case 4:
                     Position P = new Position(p);
                     temp = new DataFlow(p, p);
+                    sa1 = component.dfd.findShapeAnchor(p);
                     component.dfd.arrShapes.add(temp);
                     break;
                 case 6:
@@ -127,25 +126,22 @@ public class GraphicController extends MouseInputAdapter{
     }
  
     public void mouseReleased(MouseEvent e) {
-        System.out.println("CHECK -- Mouse released " + e.getPoint());
         dragging = false;
         //if(Global.mode==0) return;
         q = e.getPoint();
         if(constructing){
             if (temp!= null){
-                if (temp.isdrawn()) {
+                //if (temp.isdrawn()) {
                     if(component.mode == 4) {
-                        constructing = component.insertDataFlow(new Positions(p.x, p.y, q.x, q.y));
+                        sa2 = component.dfd.findShapeAnchor(q);
+                        constructing = component.insertDataFlow((DataFlow) temp, sa1, sa2);
                     } else {
                     /*
                     Edit edit = new Edit (component.shapes.get(component.shapes.size()-1));
                     edit.setVisible(true);
                     */
                     }
-                }
-                else {
-                   
-                }
+                //}
                 switch(component.mode){
                         case 1:  component.insertExternalEntity((ExternalEntity) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
                         break;
@@ -163,7 +159,6 @@ public class GraphicController extends MouseInputAdapter{
     }
 }
     public void mouseDragged(MouseEvent e) {
-        System.out.println("CHECK -- Mouse dragged " + e.getPoint());
         if (dragging) {
             if(!constructing){
                 int x1 = e.getX() - offset.x;

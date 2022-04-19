@@ -25,7 +25,10 @@ class ShapeObj {
     ArrayList<ShapeObj> inDataFlow, outDataFlow;
     VarType varType;
     
-    
+    ShapeObj() {
+        inDataFlow = new ArrayList<>();
+        outDataFlow = new ArrayList<>();
+    }
 
     @Override
     public int hashCode() {

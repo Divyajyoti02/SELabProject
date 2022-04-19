@@ -11,11 +11,11 @@ import javax.naming.directory.InvalidAttributesException;
  * @author hp
  */
 public enum VarType {
-    IntegerVar("Integer"), 
-    FloatVar("Float"), 
-    BooleanVar("Boolean"), 
-    StringVar("String"), 
-    StructVar("Struct");
+    Integer("Integer"), 
+    Float("Float"), 
+    Boolean("Boolean"), 
+    String("String"), 
+    Struct("Struct");
     
     final String text;
     

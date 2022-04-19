@@ -9,5 +9,5 @@ package com.nitrkl.sadesignerlite;
  * @author hp
  */
 public enum Type {
-        DataFlow, DataStore, DataProcess, ExternalEntity, ExternalOutput, Label
+        DataFlow, DataStore, DataProcess, ExternalEntity, ExternalOutput, Label, General
 }

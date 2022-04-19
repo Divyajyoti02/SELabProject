@@ -10,4 +10,10 @@ import java.util.ArrayList;
  *
  * @author Leo R. Rodrigues
  */
-public class Paths {ArrayList<Path> paths;}
+public class Paths {
+    ArrayList<Path> paths;
+    
+    Paths() {
+        paths = new ArrayList<>();
+    }
+}

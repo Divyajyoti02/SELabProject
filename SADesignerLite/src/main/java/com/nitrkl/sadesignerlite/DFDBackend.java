@@ -6,6 +6,7 @@ package com.nitrkl.sadesignerlite;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -20,16 +21,17 @@ class DFDBackend {
     DFDBackend() {
         arrShapes = new ArrayList<ShapeObj>();
         g = new UndirGraph();
+        connects = new HashMap<>();
     }
     
     int indexOfSmallest(int[] array) {
         if (array.length == 0)
             return -1;
 
-        int index = 0, min = array[index];
+        int index = 0, min = array[0];
 
         for (int i = 1; i < array.length; i++){
-            if (array[i] <= min){
+            if (array[i] < min){
                 min = array[i];
                 index = i;
                }
@@ -91,10 +93,11 @@ class DFDBackend {
                 ) {
                     int[] ancArr = {
                         P.x - sP.topLeft.x, 
-                        P.x - sP.bottomRight.x, 
+                        sP.bottomRight.x - P.x, 
                         P.y - sP.topLeft.y, 
-                        P.y - sP.bottomRight.y
+                        sP.bottomRight.y - P.y
                     };
+                    System.out.println(Arrays.toString(ancArr));
                     switch(indexOfSmallest(ancArr)) {
                         case 0:
                             listShapes.add(new ShapeAnchor(s, AnchorType.Left));
@@ -108,6 +111,7 @@ class DFDBackend {
                         case 3:
                             listShapes.add(new ShapeAnchor(s, AnchorType.Down));
                     }
+                    System.out.println(listShapes.get(0));
                 }
             }
         }

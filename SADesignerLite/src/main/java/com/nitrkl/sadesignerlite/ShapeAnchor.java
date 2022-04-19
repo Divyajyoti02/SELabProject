@@ -16,4 +16,9 @@ class ShapeAnchor {
         this.shape = shape;
         this.anchor = anchor;
     }
+
+    @Override
+    public String toString() {
+        return "{shape=" + shape + ", anchor=" + anchor + '}';
+    }
 }

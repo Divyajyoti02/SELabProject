@@ -68,6 +68,11 @@ public class DDWizardUI extends javax.swing.JFrame {
         VarNameLabel.setText("Variable Name");
 
         NameField.setText("Enter Name");
+        NameField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                NameFieldFocusLost(evt);
+            }
+        });
         NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameFieldActionPerformed(evt);
@@ -110,17 +115,18 @@ public class DDWizardUI extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(67, 67, 67)
+                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(76, 76, 76)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(132, 132, 132)
@@ -193,6 +199,7 @@ public class DDWizardUI extends javax.swing.JFrame {
                 );
                 jSpinner2.requestFocusInWindow();
             } else {
+                wa.dd.Names.put(name, com.nitrkl.sadesignerlite.Type.General);
                 wa.dd.dd.put(name, new DDEntry(VarType.valueOf((String) jComboBox1.getSelectedItem()), (Integer) jSpinner1.getValue(), (Integer) jSpinner2.getValue()));
                 if (addNew) {wa.dd.structs.put(name, new StructEntry(name));}
                 this.dispose();
@@ -207,6 +214,7 @@ public class DDWizardUI extends javax.swing.JFrame {
     private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
         name = NameField.getText();
+        System.out.println("Here:" + name);
         if (name.isEmpty() || name.contains(" ")) {
             javax.swing.JOptionPane.showMessageDialog(
                 this,
@@ -253,6 +261,57 @@ public class DDWizardUI extends javax.swing.JFrame {
             validName = true;
         }
     }//GEN-LAST:event_NameFieldActionPerformed
+
+    private void NameFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_NameFieldFocusLost
+        // TODO add your handling code here:
+        name = NameField.getText();
+        System.out.println("Here:" + name);
+        if (name.isEmpty() || name.contains(" ")) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid variable name", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            NameField.requestFocusInWindow();
+        }
+        addNew = !wa.dd.Names.containsKey(name);
+        if (!addNew) {
+            if (mode == 0) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid variable name", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jComboBox1.setEditable(true);
+                NameField.setText("");
+                NameField.requestFocusInWindow();
+                validName = true;
+            } else {
+                ShapeObj s;
+                if (mode == 1) s = df.end.shape.containsName(name);
+                else s = df.start.shape.containsName(name);
+                if (s == null) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Invalid variable name", 
+                        "Error", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                    jComboBox1.setEditable(true);
+                    NameField.setText("");
+                    NameField.requestFocusInWindow();
+                } else {
+                    jComboBox1.setSelectedItem(s.varType.toString());
+                    jComboBox1.setEditable(false);
+                    validName = true;
+                }
+            }
+        } else {
+            validName = true;
+        }
+    }//GEN-LAST:event_NameFieldFocusLost
 
     /**
      * @param args the command line arguments

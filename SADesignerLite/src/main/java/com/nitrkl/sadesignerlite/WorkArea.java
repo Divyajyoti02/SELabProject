@@ -25,6 +25,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     int decomposeLevel;
     ShapeObj currShape;
     int mode;
+    DDWizardUI ddw;
 
     WorkArea() {
         dfd = new DFDBackend();
@@ -42,10 +43,10 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         mode = 0;
     }
     
-    boolean insertDataFlow(Positions ps) {
-        DataFlow df = new DataFlow();
-        df.start = dfd.findShapeAnchor(ps.topLeft);
-        df.end = dfd.findShapeAnchor(ps.bottomRight);
+    boolean insertDataFlow(DataFlow df, ShapeAnchor sa1, ShapeAnchor sa2) {
+        df.start = sa1;
+        df.end = sa2;
+        System.out.println(df.start + " " + df.end);
         if (
             df.start.shape != null &&
             df.end.shape != null &&
@@ -55,20 +56,48 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             ) &&
             df.start.shape.type != Type.ExternalOutput
         ) {
+            System.out.println("Step1");
             dfd.updateConnects(df);
+            System.out.println("Step2");
+            Position p1 = df.start.shape.position.topLeft;
+            Position p2 = df.start.shape.position.bottomRight;
+            switch(df.start.anchor) {
+                case Up: df.position.topLeft = new Position((int)((p1.x+p2.x)/2),p1.y);
+                break;
+                case Down: df.position.topLeft = new Position((int)((p1.x+p2.x)/2),p2.y);
+                break;
+                case Left: df.position.topLeft = new Position(p1.x,(int)((p1.y+p2.y)/2));
+                break;
+                case Right: df.position.topLeft = new Position(p2.x,(int)((p1.y+p2.y)/2));
+            }
+            p1 = df.end.shape.position.topLeft;
+            p2 = df.end.shape.position.bottomRight;
+            switch(df.end.anchor) {
+                case Up: df.position.bottomRight = new Position((int)((p1.x+p2.x)/2),p1.y);
+                break;
+                case Down: df.position.bottomRight = new Position((int)((p1.x+p2.x)/2),p2.y);
+                break;
+                case Left: df.position.bottomRight = new Position(p1.x,(int)((p1.y+p2.y)/2));
+                break;
+                case Right: df.position.bottomRight = new Position(p2.x,(int)((p1.y+p2.y)/2));
+            }
             if (df.start.shape.type == Type.DataProcess) {
-                if (df.end.shape.type == Type.DataProcess) new DDWizardUI(0, df);
-                else new DDWizardUI(1, df);
-            } else new DDWizardUI(2, df);
-        df.decompose = null;
-        df.start.shape.outDataFlow.add(df);
-        df.end.shape.inDataFlow.add(df);
-        dfd.g.addEdge(new TwoPath(df.start.shape, df.end.shape));
-        dfd.arrShapes.add(df);
-        repaint();
-        isChanged = true;
-        return true;
-        } else return false;
+                if (df.end.shape.type == Type.DataProcess) ddw = new DDWizardUI(0, df);
+                else ddw = new DDWizardUI(1, df);
+            } else ddw = new DDWizardUI(2, df);
+            ddw.setParent(this);
+            ddw.setVisible(true);
+            df.decompose = null;
+            df.start.shape.outDataFlow.add(df);
+            df.end.shape.inDataFlow.add(df);
+            dfd.g.addEdge(new TwoPath(df.start.shape, df.end.shape));
+            repaint();
+            isChanged = true;
+            return true;
+        } else {
+            dfd.arrShapes.remove(df);
+            return false;
+        }
     }
     
     void insertDataProcess(DataProcess dp) {
@@ -205,7 +234,6 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         int i;
         for(ShapeObj s: dfd.arrShapes) {
             //if(s.equals(currShape)) s.draw(g);
-            System.out.println(s.type);
             s.draw(g);
         }
     }

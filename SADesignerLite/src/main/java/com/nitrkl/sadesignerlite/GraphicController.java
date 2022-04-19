@@ -45,7 +45,7 @@ public class GraphicController extends MouseInputAdapter{
         System.out.println("CHECK -- Mouse moved " + e.getPoint());
         x = component.dfd.findShapeAnchor(e.getPoint()).shape; //sel = getsymbolindex(e.getPoint());
         component.currShape = x;
-        component.repaint();
+        //component.repaint();
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -98,6 +98,7 @@ public class GraphicController extends MouseInputAdapter{
                     component.dfd.arrShapes.add(temp);
                     break;
                 case 2: 
+                    //component.insertDataProcess(new Positions(p.x, p.y, p.x +5, p.y+5));
                     temp = new DataProcess(p.x,p.y,0,0);
                     component.dfd.arrShapes.add(temp);
                     break;
@@ -143,8 +144,9 @@ public class GraphicController extends MouseInputAdapter{
                     }
                 }
                 else {
-                   component.dfd.arrShapes.remove(component.dfd.arrShapes.size()-1);
+                   
                 }
+            component.insertDataProcess((DataProcess) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
             }
         } else {
                 component.repaint();
@@ -166,17 +168,17 @@ public class GraphicController extends MouseInputAdapter{
                 case 0:
                     break;
                 case 1:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
                 case 2:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
                 case 3:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
                 case 4:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
                 case 6:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
                 case 7:
-                    temp.resize(e.getX() - p.x,e.getY() - p.y);
+                    temp.resize(new Point(e.getX(),e.getY()));
             }
             }
             

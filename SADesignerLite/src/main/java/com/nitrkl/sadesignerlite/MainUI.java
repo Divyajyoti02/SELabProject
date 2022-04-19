@@ -391,6 +391,7 @@ public class MainUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private javax.swing.JToggleButton[] buttons;
     private WorkArea workArea;
+    private GraphicController gc;
     
     private void DecomposeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DecomposeButtonActionPerformed
         // TODO add your handling code here:
@@ -404,6 +405,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void DataProcessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProcessButtonActionPerformed
         // TODO add your handling code here:
+        if (DataFlowButton.isSelected()) workArea.mode = 0; else workArea.mode = 2;
         selectOne(DataProcessButton, buttons);
     }//GEN-LAST:event_DataProcessButtonActionPerformed
 
@@ -426,11 +428,11 @@ public class MainUI extends javax.swing.JFrame {
             ), "deleteShape"
         );
         workArea.getActionMap().put("deleteShape", new deleteShape());
-        GraphicController gc = new GraphicController(workArea);
         WorkSpace.getViewport().add(workArea);
         WorkSpace.setVisible(true);
         this.setTitle("SADesignerLite - Untitled");
         jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
+        gc = new GraphicController(workArea);
     }//GEN-LAST:event_NewItemActionPerformed
 
     private void DDItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DDItemActionPerformed

@@ -13,6 +13,10 @@ import java.util.HashSet;
  */
 class UndirGraph {
     HashMap<ShapeObj, HashSet<ShapeObj>> g;
+
+    public UndirGraph() {
+        g = new HashMap<>();
+    }
     
     int numNodes() {return g.size();}
     

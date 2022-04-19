@@ -14,4 +14,12 @@ class DDBackend {
     HashMap<String, Type> Names;
     HashMap<String, DDEntry> dd;
     HashMap<String, StructEntry> structs;
+
+    public DDBackend() {
+        this.Names = new HashMap<>();
+        this.dd = new HashMap<>();
+        this.structs = new HashMap<>();
+    }
+    
+    
 }

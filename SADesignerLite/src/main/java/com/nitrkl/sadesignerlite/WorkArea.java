@@ -4,8 +4,12 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.io.Serializable;
 import javax.swing.Action;
 
@@ -67,8 +71,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         } else return false;
     }
     
-    void insertDataProcess(Positions ps) {
-        DataProcess dp = new DataProcess(ps);
+    void insertDataProcess(DataProcess dp) {
         dp.Name = "";
         while(true) {
             dp.Name = javax.swing.JOptionPane.showInputDialog(
@@ -86,9 +89,9 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
                 );
             }
         }
+        System.out.println(dp.position);
         dfd.g.addNode(dp);
-        dfd.arrShapes.add(dp);
-        display();
+        repaint();
         isChanged = true;
     }
     
@@ -163,7 +166,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         }
         dfd.g.addNode(eo);
         dfd.arrShapes.add(eo);
-        display();
+        repaint();
         isChanged = true;
     }
     
@@ -174,6 +177,20 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         isChanged = true;
     }
     
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setStroke(new BasicStroke(3));
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                            RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setPaint(Color.black);
+
+        int i;
+        for(ShapeObj s: dfd.arrShapes) {
+            //if(s.equals(currShape)) s.draw(g);
+            s.draw(g);
+        }
+    }
     
 
     void display() {

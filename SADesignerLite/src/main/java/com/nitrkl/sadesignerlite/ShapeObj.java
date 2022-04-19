@@ -4,7 +4,10 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -21,6 +24,8 @@ class ShapeObj {
     WorkArea decompose;
     ArrayList<ShapeObj> inDataFlow, outDataFlow;
     VarType varType;
+    
+    
 
     @Override
     public int hashCode() {
@@ -60,8 +65,8 @@ class ShapeObj {
         return (position.bottomRight.x - position.topLeft.x > 10 && position.bottomRight.y - position.topLeft.y > 10);
     }
 
-    void resize(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    void resize(Point p) {
+        position.bottomRight = new Position(p);
     }
 
     void move(int x1, int y1) {
@@ -76,5 +81,9 @@ class ShapeObj {
         for (ShapeObj s: inDataFlow) if (s.Name.equals(name)) return s;
         for (ShapeObj s: outDataFlow) if (s.Name.equals(name)) return s;
         return null;
+    }
+
+    public void draw(Graphics g){
+        g.drawOval(position.topLeft.x, position.topLeft.y, position.bottomRight.x - position.topLeft.x, position.bottomRight.y - position.topLeft.y);
     }
 }

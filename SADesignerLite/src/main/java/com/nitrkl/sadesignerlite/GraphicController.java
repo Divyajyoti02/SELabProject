@@ -146,8 +146,9 @@ public class GraphicController extends MouseInputAdapter{
                         break;
                         case 2: component.insertDataProcess((DataProcess) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
                         break;
-                        case 6: System.out.println("Release");
-                            component.insertExternalOutput((ExternalOutput) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+                        case 3: component.insertDataStore((DataStore) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+                        break;
+                        case 6: component.insertExternalOutput((ExternalOutput) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
                 }
         } else {
                 component.repaint();

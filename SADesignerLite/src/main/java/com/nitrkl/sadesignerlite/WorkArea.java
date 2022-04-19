@@ -95,15 +95,21 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         isChanged = true;
     }
     
-    void insertDataStore(Positions ps) {
-        DataStore ds = new DataStore(ps);
+    void insertDataStore(DataStore ds) {
         ds.Name = "";
         while(true) {
             ds.Name = javax.swing.JOptionPane.showInputDialog(
                 "Enter name of data store"
             );
-            if (!"".equals(ds.Name) && !dd.Names.containsKey(ds.Name)) {
+            if (ds.Name == null) {
+                dfd.arrShapes.remove(ds);
+                repaint();
+                break;
+            } else if (!"".equals(ds.Name) && !dd.Names.containsKey(ds.Name)) {
                 dd.Names.put(ds.Name, Type.DataProcess);
+                dfd.g.addNode(ds);
+                repaint();
+                isChanged = true;
                 break;
             } else {
                 javax.swing.JOptionPane.showMessageDialog(
@@ -112,11 +118,12 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
                     "Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                dfd.g.addNode(ds);
+                repaint();
+                isChanged = true;
             }
         }
-        dfd.g.addNode(ds);
-        repaint();
-        isChanged = true;
+        
     }
     
     void insertExternalEntity(ExternalEntity ee) {

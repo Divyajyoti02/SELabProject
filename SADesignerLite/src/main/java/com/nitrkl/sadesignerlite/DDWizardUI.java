@@ -15,6 +15,8 @@ public class DDWizardUI extends javax.swing.JFrame {
     int mode;
     DataFlow df;
     boolean addNew, validName;
+    
+    private StructureWizardUI strUI;
 
     /**
      * Creates new form DDWizard
@@ -161,6 +163,26 @@ public class DDWizardUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public String getSelVal()
+    {
+        return jComboBox1.getSelectedItem().toString();
+    }
+    public String getObjName()
+    {
+        return NameField.getText();
+    }
+    public String getObjMin()
+    {
+        return jSpinner1.getValue().toString();
+    }
+    public String getObjMax()
+    {
+        return jSpinner2.getValue().toString();
+    }
+    public void setParent(StructureWizardUI swi)
+    {
+        strUI=swi;
+    }
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
         if (!validName) {
@@ -361,4 +383,8 @@ public class DDWizardUI extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     // End of variables declaration//GEN-END:variables
+
+    void setvisile(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

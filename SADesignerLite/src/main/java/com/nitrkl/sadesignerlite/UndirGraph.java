@@ -7,6 +7,8 @@ package com.nitrkl.sadesignerlite;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -33,4 +35,26 @@ class UndirGraph implements Serializable{
     }
 
     boolean containsNode(ShapeObj s) {return g.containsKey(s);}
+    
+    boolean debugIsolated(javax.swing.JTextArea jta) {
+        if (g.size() != 0) {
+            HashMap<ShapeObj, Boolean> isVisited = new HashMap<>();
+            for (ShapeObj s: g.keySet()) isVisited.put(s, Boolean.FALSE);
+            ShapeObj s = (ShapeObj)(g.keySet().toArray())[0];
+            //isVisited.put(s, Boolean.TRUE);
+            Queue<ShapeObj> q = new LinkedList<>();
+            q.add(s);
+            while(!q.isEmpty()) {
+                s = q.remove();
+                isVisited.put(s, Boolean.TRUE);
+                for (ShapeObj s2: g.get(s)) {
+                    if (!isVisited.get(s2)) q.add(s2);
+                }
+            }
+            if (isVisited.values().contains(Boolean.FALSE)) {
+                jta.append("Isolated error detected!");
+                return true;
+            } else return false;
+        } else return false;
+    }
 }

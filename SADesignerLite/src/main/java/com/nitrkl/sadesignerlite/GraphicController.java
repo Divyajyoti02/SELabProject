@@ -42,13 +42,14 @@ public class GraphicController extends MouseInputAdapter{
     
     @Override
     public void mouseMoved(MouseEvent e) {
+        System.out.println("CHECK -- Mouse moved " + e.getPoint());
         x = component.dfd.findShapeAnchor(e.getPoint()).shape; //sel = getsymbolindex(e.getPoint());
         component.currShape = x;
         component.repaint();
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        System.out.println("CHECK -- Mouse clicked once rn " + e.getPoint());
          x = component.dfd.findShapeAnchor(p).shape;
         /*if (SwingUtilities.isRightMouseButton(e)) {
             PopUpDemo menu = new PopUpDemo();
@@ -80,6 +81,7 @@ public class GraphicController extends MouseInputAdapter{
         }
     }
     public void mousePressed(MouseEvent e) {
+        System.out.println("CHECK -- Mouse pressed " + e.getPoint());
         x = null;
         p = e.getPoint();
         if(component.mode != 4 && component.mode != 6)
@@ -124,22 +126,25 @@ public class GraphicController extends MouseInputAdapter{
     }
  
     public void mouseReleased(MouseEvent e) {
+        System.out.println("CHECK -- Mouse released " + e.getPoint());
         dragging = false;
         //if(Global.mode==0) return;
         q = e.getPoint();
         if(constructing){
-            if (temp.isdrawn()) {
-                if(component.mode == 4) {
-                    constructing = component.insertDataFlow(new Positions(p.x, p.y, q.x, q.y));
-                } else {
+            if (temp!= null){
+                if (temp.isdrawn()) {
+                    if(component.mode == 4) {
+                        constructing = component.insertDataFlow(new Positions(p.x, p.y, q.x, q.y));
+                    } else {
                     /*
                     Edit edit = new Edit (component.shapes.get(component.shapes.size()-1));
                     edit.setVisible(true);
                     */
+                    }
                 }
-            }
-            else {
-                 component.dfd.arrShapes.remove(component.dfd.arrShapes.size()-1);
+                else {
+                   component.dfd.arrShapes.remove(component.dfd.arrShapes.size()-1);
+                }
             }
         } else {
                 component.repaint();
@@ -149,14 +154,15 @@ public class GraphicController extends MouseInputAdapter{
     }
  
     public void mouseDragged(MouseEvent e) {
+        System.out.println("CHECK -- Mouse dragged " + e.getPoint());
         if (dragging) {
             if(!constructing){
-                int x = e.getX() - offset.x;
-                int y = e.getY() - offset.y;
-                component.shapes.get(sel).move(x, y);
+                int x1 = e.getX() - offset.x;
+                int y1 = e.getY() - offset.y;
+                x.move(x1, y1);  //needs to be changed
             }
             else {
-            switch (Global.mode) {
+            switch (component.mode) {
                 case 0:
                     break;
                 case 1:
@@ -177,18 +183,8 @@ public class GraphicController extends MouseInputAdapter{
             component.repaint();
         }
     }
-    public int getsymbolindex(Point p) {
-        int index=-1;
-        for(int i=0; i<component.shapes.size(); i++){
-            Symbol s =  component.shapes.get(i);
-            if(s.contains(p)) {
-                index=i;
-                return i;
-            }
-        }
-        return index;
-    }
-    void adjustarrows (Symbol curr, int x, int y) {
+
+   /* void adjustarrows (Symbol curr, int x, int y) {
         FlowArrow a;
         for(int i=0; i<component.shapes.size(); i++) {
             Symbol s = component.shapes.get(i);
@@ -210,7 +206,7 @@ public class GraphicController extends MouseInputAdapter{
         System.out.println("Arrows adjusted");
     }
     void deletearrow(Symbol curr) {
-        FlowArrow a;
+        DataFlow a;
         for(int i=0; i<component.shapes.size(); i++) {
             Symbol s = component.shapes.get(i);
             if(s.gettype().equals("flowarrow")) {
@@ -221,7 +217,8 @@ public class GraphicController extends MouseInputAdapter{
         }    
     }    
 }
-
+*/
+}
 class menuclicklistener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         System.out.println("Mouse clicked (# of clicks: " + e.getClickCount() + ")");

@@ -426,6 +426,7 @@ public class MainUI extends javax.swing.JFrame {
             ), "deleteShape"
         );
         workArea.getActionMap().put("deleteShape", new deleteShape());
+        GraphicController gc = new GraphicController(workArea);
         WorkSpace.getViewport().add(workArea);
         WorkSpace.setVisible(true);
         this.setTitle("SADesignerLite - Untitled");

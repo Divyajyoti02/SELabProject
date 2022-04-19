@@ -19,6 +19,8 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     boolean isChanged;
     String title;
     int decomposeLevel;
+    ShapeObj currShape;
+    int mode;
 
     WorkArea() {
         dfd = new DFDBackend();
@@ -33,9 +35,10 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         this.setVisible(true);
         this.setSize(1024, 728);
         decomposeLevel = 0;
+        mode = 0;
     }
     
-    void insertDataFlow(Positions ps) {
+    boolean insertDataFlow(Positions ps) {
         DataFlow df = new DataFlow();
         df.start = dfd.findShapeAnchor(ps.topLeft);
         df.end = dfd.findShapeAnchor(ps.bottomRight);
@@ -53,18 +56,19 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
                 if (df.end.shape.type == Type.DataProcess) new DDWizardUI(0, df);
                 else new DDWizardUI(1, df);
             } else new DDWizardUI(2, df);
-        }
         df.decompose = null;
         df.start.shape.outDataFlow.add(df);
         df.end.shape.inDataFlow.add(df);
         dfd.g.addEdge(new TwoPath(df.start.shape, df.end.shape));
         dfd.arrShapes.add(df);
-        display();
+        repaint();
         isChanged = true;
+        return true;
+        } else return false;
     }
     
     void insertDataProcess(Positions ps) {
-        DataProcess dp = new DataProcess();
+        DataProcess dp = new DataProcess(ps);
         dp.Name = "";
         while(true) {
             dp.Name = javax.swing.JOptionPane.showInputDialog(
@@ -89,7 +93,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
     
     void insertDataStore(Positions ps) {
-        DataStore ds = new DataStore();
+        DataStore ds = new DataStore(ps);
         ds.Name = "";
         while(true) {
             ds.Name = javax.swing.JOptionPane.showInputDialog(
@@ -114,7 +118,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
     
     void insertExternalEntity(Positions ps) {
-        ExternalEntity ee = new ExternalEntity();
+        ExternalEntity ee = new ExternalEntity(ps);
         ee.Name = "";
         while(true) {
             ee.Name = javax.swing.JOptionPane.showInputDialog(
@@ -139,7 +143,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
     
     void insertExternalOutput(Positions ps) {
-        ExternalOutput eo = new ExternalOutput();
+        ExternalOutput eo = new ExternalOutput(ps);
         eo.Name = "";
         while(true) {
             eo.Name = javax.swing.JOptionPane.showInputDialog(
@@ -169,6 +173,8 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         display();
         isChanged = true;
     }
+    
+    
 
     void display() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

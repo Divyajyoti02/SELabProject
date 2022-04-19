@@ -4,6 +4,7 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,6 +38,47 @@ class DFDBackend {
     }
 
     ShapeAnchor findShapeAnchor(Position P) {
+        ArrayList<ShapeAnchor> listShapes = new ArrayList<ShapeAnchor>();
+        for (ShapeObj s : arrShapes) {
+            if (s.type != Type.DataFlow && s.type != Type.Label) {
+                Positions sP = s.position;
+                if (
+                    P.x >= sP.topLeft.x && 
+                    P.x <= sP.bottomRight.x && 
+                    P.y >= sP.topLeft.y && 
+                    P.y <= sP.bottomRight.y
+                ) {
+                    int[] ancArr = {
+                        P.x - sP.topLeft.x, 
+                        P.x - sP.bottomRight.x, 
+                        P.y - sP.topLeft.y, 
+                        P.y - sP.bottomRight.y
+                    };
+                    switch(indexOfSmallest(ancArr)) {
+                        case 0:
+                            listShapes.add(new ShapeAnchor(s, AnchorType.Left));
+                            break;
+                        case 1:
+                            listShapes.add(new ShapeAnchor(s, AnchorType.Right));
+                            break;
+                        case 2:
+                            listShapes.add(new ShapeAnchor(s, AnchorType.Up));
+                            break;
+                        case 3:
+                            listShapes.add(new ShapeAnchor(s, AnchorType.Down));
+                    }
+                }
+            }
+        }
+        switch (listShapes.size()) {
+            case 0: return new ShapeAnchor(null, AnchorType.Left);
+            case 1: return listShapes.get(0);
+            default: return chooseList(listShapes);
+        }
+    }
+    
+    ShapeAnchor findShapeAnchor(Point p) {
+        Position P = new Position(p.x, p.y);
         ArrayList<ShapeAnchor> listShapes = new ArrayList<ShapeAnchor>();
         for (ShapeObj s : arrShapes) {
             if (s.type != Type.DataFlow && s.type != Type.Label) {

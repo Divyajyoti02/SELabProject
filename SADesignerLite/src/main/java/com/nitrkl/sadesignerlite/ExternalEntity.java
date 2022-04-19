@@ -8,4 +8,14 @@ package com.nitrkl.sadesignerlite;
  *
  * @author hp
  */
-class ExternalEntity extends ShapeObj {}
+class ExternalEntity extends ShapeObj {
+    public ExternalEntity(int x, int y, int width, int height) {
+        type = Type.ExternalEntity;
+        position = new Positions(x, y, x + width, y + height);
+    }
+    
+    public ExternalEntity(Positions ps) {
+        type = Type.ExternalEntity;
+        position = ps;
+    }
+}

@@ -8,4 +8,14 @@ package com.nitrkl.sadesignerlite;
  *
  * @author hp
  */
-class ExternalOutput extends ShapeObj {}
+class ExternalOutput extends ShapeObj {
+    public ExternalOutput(int x, int y, int width, int height) {
+        type = Type.ExternalOutput;
+        position = new Positions(x, y, x + width, y + height);
+    }
+    
+    public ExternalOutput(Positions ps) {
+        type = Type.ExternalOutput;
+        position = ps;
+    }
+}

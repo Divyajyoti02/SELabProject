@@ -4,6 +4,11 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+
 /**
  *
  * @author hp
@@ -296,6 +301,11 @@ public class MainUI extends javax.swing.JFrame {
 
         OpenItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         OpenItem.setText("Open");
+        OpenItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenItemActionPerformed(evt);
+            }
+        });
         FileMenu.add(OpenItem);
 
         SaveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -517,8 +527,9 @@ public class MainUI extends javax.swing.JFrame {
 
     private void SaveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveItemActionPerformed
         // TODO add your handling code here:
-        if (workArea.title == null) workArea.saveAs();
-        else workArea.save();
+        //if (workArea.title == null) workArea.saveAs();
+        //else 
+        workArea.save();
     }//GEN-LAST:event_SaveItemActionPerformed
 
     private void SaveAsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsItemActionPerformed
@@ -526,6 +537,45 @@ public class MainUI extends javax.swing.JFrame {
         workArea.saveAs();
     }//GEN-LAST:event_SaveAsItemActionPerformed
 
+    private void OpenItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenItemActionPerformed
+        // TODO add your handling code here:
+       if (workArea!= null){
+       // workArea.open();
+        FileInputStream file;
+        ObjectInputStream o;
+        try{
+        file = new FileInputStream("demo.dfd");
+        o = new ObjectInputStream(file);
+        WorkArea temp = (WorkArea)o.readObject();
+        o.close();
+        file.close();       
+        } catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        
+      //  workArea = new WorkArea();
+        workArea.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+            javax.swing.KeyStroke.getKeyStroke(
+                java.awt.event.KeyEvent.VK_DELETE, 0
+            ), "deleteShape"
+        );
+        workArea.getActionMap().put("deleteShape", new deleteShape());
+        workArea.mode = 0; 
+        System.out.println(workArea.mode);
+        WorkSpace.getViewport().add(workArea);
+        WorkSpace.setVisible(true);
+        this.setTitle("SADesignerLite - Untitled");
+        jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
+        gc = new GraphicController(workArea);
+        for (javax.swing.JToggleButton b: buttons) b.setSelected(false);
+        System.out.println(DataProcessButton.isSelected() + " " + ExternalEntityButton.isSelected() + " " + ExternalOutputButton.isSelected());
+    }//GEN-LAST:event_OpenItemActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -609,3 +659,6 @@ public class MainUI extends javax.swing.JFrame {
         }
     }
 }
+
+
+

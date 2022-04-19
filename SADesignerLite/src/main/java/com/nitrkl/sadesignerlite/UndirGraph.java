@@ -4,6 +4,7 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -11,7 +12,7 @@ import java.util.HashSet;
  *
  * @author hp
  */
-class UndirGraph {
+class UndirGraph implements Serializable{
     HashMap<ShapeObj, HashSet<ShapeObj>> g;
 
     public UndirGraph() {

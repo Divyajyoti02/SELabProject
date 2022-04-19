@@ -12,6 +12,16 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.Serializable;
 import javax.swing.Action;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import static java.lang.System.in;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,6 +36,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     ShapeObj currShape;
     int mode;
     DDWizardUI ddw;
+    String filename, filepath;
 
     WorkArea() {
         dfd = new DFDBackend();
@@ -252,8 +263,39 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
 
     void save() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        FileOutputStream temp;
+        ObjectOutputStream o;
+        try {
+            temp = new FileOutputStream("Demo.dfd");
+            o = new ObjectOutputStream(temp);
+            o.writeObject(new WorkArea());
+            o.close();
+            temp.close();
+        } catch (IOException ex) {
+            Logger.getLogger(WorkArea.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        isChanged = false;
     }
+    
+    /*void open(){
+        FileInputStream file;
+        ObjectInputStream o;
+        try{
+        file = new FileInputStream("demo.dfd");
+        o = new ObjectInputStream(file);
+        WorkArea temp = (WorkArea)o.readObject();
+        o.close();
+        file.close();       
+        } catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        
+    }*/
 
     Action deleteShape() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

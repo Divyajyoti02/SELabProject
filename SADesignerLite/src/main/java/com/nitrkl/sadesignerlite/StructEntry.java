@@ -4,11 +4,13 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hp
  */
-class StructEntry {
+class StructEntry implements Serializable {
     String name;
 
     StructEntry(String name) {

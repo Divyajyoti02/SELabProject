@@ -4,13 +4,14 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
 import javax.naming.directory.InvalidAttributesException;
 
 /**
  *
  * @author hp
  */
-public enum VarType {
+public enum VarType implements Serializable{
     Integer("Integer"), 
     Float("Float"), 
     Boolean("Boolean"), 

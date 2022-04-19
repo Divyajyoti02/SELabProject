@@ -4,13 +4,14 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author hp
  */
-class DDBackend {
+class DDBackend implements Serializable {
     HashMap<String, Type> Names;
     HashMap<String, DDEntry> dd;
     HashMap<String, StructEntry> structs;

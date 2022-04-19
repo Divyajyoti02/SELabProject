@@ -4,13 +4,14 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Leo R. Rodrigues
  */
-public class TwoPath {
+public class TwoPath implements Serializable {
     ShapeObj Uedge, Vedge;
 
     public TwoPath(ShapeObj Uedge, ShapeObj Vedge) {

@@ -5,6 +5,7 @@
 package com.nitrkl.sadesignerlite;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.HashMap;
  *
  * @author hp
  */
-class DFDBackend {
+class DFDBackend implements Serializable {
     ArrayList<ShapeObj> arrShapes;
     UndirGraph g;
     HashMap<TwoPath, Paths> connects;

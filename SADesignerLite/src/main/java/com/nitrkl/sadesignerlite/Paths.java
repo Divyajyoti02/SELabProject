@@ -4,13 +4,14 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Leo R. Rodrigues
  */
-public class Paths {
+public class Paths implements Serializable {
     ArrayList<Path> paths;
     
     Paths() {

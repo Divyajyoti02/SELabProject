@@ -4,11 +4,13 @@
  */
 package com.nitrkl.sadesignerlite;
 
+import java.io.Serializable;
+
 /**
  *
  * @author hp
  */
-class DDEntry {
+class DDEntry implements Serializable {
     VarType type;
     int value1, value2;
 

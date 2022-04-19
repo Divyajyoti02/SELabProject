@@ -172,10 +172,25 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         isChanged = true;
     }
     
-    void insertLabel(Positions ps) {
-        LabelObj l = new LabelObj();
-        l.Name = "Label" + Integer.toString(l.labelCount++);
-        display();
+    void insertLabel(LabelObj l) {
+        //l.Name = "Label" + Integer.toString(l.labelCount++);ee.Name = "";
+        while(true) {
+            l.Name = javax.swing.JOptionPane.showInputDialog(
+                "Enter the text in the Label"
+            );
+            if (!"".equals(l.Name) && !dd.Names.containsKey(l.Name)) {
+                dd.Names.put(l.Name, Type.DataProcess);
+                break;
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(
+                    null, 
+                    "Name \"" + l.Name + "\" already exists",
+                    "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+        }
+        repaint();
         isChanged = true;
     }
     

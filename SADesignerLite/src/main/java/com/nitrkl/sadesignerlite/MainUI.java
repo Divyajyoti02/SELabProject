@@ -480,6 +480,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void LabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LabelButtonActionPerformed
         // TODO add your handling code here:
+        if (!LabelButton.isSelected()) workArea.mode = 0; else workArea.mode = 7;
         selectOne(LabelButton, buttons);
     }//GEN-LAST:event_LabelButtonActionPerformed
 

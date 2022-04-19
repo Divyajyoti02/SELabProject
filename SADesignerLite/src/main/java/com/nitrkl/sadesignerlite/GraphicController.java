@@ -79,6 +79,11 @@ public class GraphicController extends MouseInputAdapter{
                 x.deleteObj();
             }
         }
+        else if (component.mode == 7){
+            temp = new LabelObj(e.getPoint());
+            component.dfd.arrShapes.add(temp);
+            component.insertLabel((LabelObj) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+        }
     }
     public void mousePressed(MouseEvent e) {
         System.out.println("CHECK -- Mouse pressed " + e.getPoint());

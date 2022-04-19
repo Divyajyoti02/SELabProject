@@ -4,14 +4,18 @@
  */
 package com.nitrkl.sadesignerlite;
 
-import java.util.HashMap;
-
 /**
  *
  * @author hp
  */
-class DDBackend {
-    HashMap<String, Type> Names;
-    HashMap<String, DDEntry> dd;
-    HashMap<String, StructEntry> structs;
+class DDEntry {
+    VarType type;
+    int value1, value2;
+
+    public DDEntry(VarType type, int value1, int value2) {
+        this.type = type;
+        this.value1 = value1;
+        this.value2 = value2;
+    }
+    
 }

@@ -11,6 +11,10 @@ package com.nitrkl.sadesignerlite;
 public class DDWizardUI extends javax.swing.JFrame {
 
     private WorkArea wa;
+    String name;
+    int mode;
+    DataFlow df;
+    boolean addNew, validName;
 
     /**
      * Creates new form DDWizard
@@ -18,6 +22,16 @@ public class DDWizardUI extends javax.swing.JFrame {
     public DDWizardUI() {
         initComponents();
         this.setTitle("DDWizard");
+        name = "";
+        validName = false;
+    }
+    
+    public DDWizardUI(int mode, DataFlow df) {
+        initComponents();
+        this.setTitle("DDWizard");
+        name = "";
+        this.mode = mode;
+        this.df = df;
     }
     
     public void setParent(WorkArea wa) {this.wa = wa;}
@@ -42,7 +56,7 @@ public class DDWizardUI extends javax.swing.JFrame {
         jSpinner1 = new javax.swing.JSpinner();
         jSpinner2 = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +68,11 @@ public class DDWizardUI extends javax.swing.JFrame {
         VarNameLabel.setText("Variable Name");
 
         NameField.setText("Enter Name");
+        NameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameFieldActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Variable Data Type");
 
@@ -138,7 +157,56 @@ public class DDWizardUI extends javax.swing.JFrame {
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
-        String name = NameField.getText();
+        if (!validName) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid variable name", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            NameField.requestFocusInWindow();
+        } else if (jComboBox1.getSelectedItem().toString().equals("Choose DataType")){
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid data type Selected!", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            jComboBox1.requestFocusInWindow();
+        } else {
+            int jspin1 = (Integer) jSpinner1.getValue();
+            int jspin2 = (Integer) jSpinner2.getValue();
+            if (jspin1 > jspin2) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Min is greater than max!", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jSpinner1.requestFocusInWindow();
+            } else if (jspin2 == 0){
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Both values can't be zero!", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jSpinner2.requestFocusInWindow();
+            } else {
+                wa.dd.dd.put(name, new DDEntry(VarType.valueOf((String) jComboBox1.getSelectedItem()), (Integer) jSpinner1.getValue(), (Integer) jSpinner2.getValue()));
+                if (addNew) {wa.dd.structs.put(name, new StructEntry(name));}
+                this.dispose();
+            }
+        }
+    }//GEN-LAST:event_SubmitActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
+        // TODO add your handling code here:
+        name = NameField.getText();
         if (name.isEmpty() || name.contains(" ")) {
             javax.swing.JOptionPane.showMessageDialog(
                 this,
@@ -148,40 +216,43 @@ public class DDWizardUI extends javax.swing.JFrame {
             );
             NameField.requestFocusInWindow();
         }
-        if (jComboBox1.getSelectedItem().toString().equals("Choose DataType")){
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Invalid data type Selected!", 
-                "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-            jComboBox1.requestFocusInWindow();
+        addNew = !wa.dd.Names.containsKey(name);
+        if (!addNew) {
+            if (mode == 0) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid variable name", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jComboBox1.setEditable(true);
+                NameField.setText("");
+                NameField.requestFocusInWindow();
+                validName = true;
+            } else {
+                ShapeObj s;
+                if (mode == 1) s = df.end.shape.containsName(name);
+                else s = df.start.shape.containsName(name);
+                if (s == null) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Invalid variable name", 
+                        "Error", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                    jComboBox1.setEditable(true);
+                    NameField.setText("");
+                    NameField.requestFocusInWindow();
+                } else {
+                    jComboBox1.setSelectedItem(s.varType.toString());
+                    jComboBox1.setEditable(false);
+                    validName = true;
+                }
+            }
+        } else {
+            validName = true;
         }
-        int jspin1 = (Integer) jSpinner1.getValue();
-        int jspin2 = (Integer) jSpinner2.getValue();
-        if(jspin1>jspin2){
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Min is greater than max!", 
-                "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-            jSpinner2.requestFocusInWindow();
-        }
-        if(jspin1==0&&jspin2==0){
-            javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Both values can't be zero!", 
-                "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-            jSpinner2.requestFocusInWindow();
-        }
-    }//GEN-LAST:event_SubmitActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_NameFieldActionPerformed
 
     /**
      * @param args the command line arguments

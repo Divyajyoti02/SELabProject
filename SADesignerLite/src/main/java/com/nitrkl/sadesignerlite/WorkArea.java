@@ -50,9 +50,9 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         ) {
             dfd.updateConnects(df);
             if (df.start.shape.type == Type.DataProcess) {
-                if (df.end.shape.type == Type.DataProcess) DDWizard(0);
-                else DDWizard(1);
-            } else DDWizard(2);
+                if (df.end.shape.type == Type.DataProcess) new DDWizardUI(0, df);
+                else new DDWizardUI(1, df);
+            } else new DDWizardUI(2, df);
         }
         df.decompose = null;
         df.start.shape.outDataFlow.add(df);
@@ -168,10 +168,6 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         l.Name = "Label" + Integer.toString(l.labelCount++);
         display();
         isChanged = true;
-    }
-
-    void DDWizard(int mode) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     void display() {

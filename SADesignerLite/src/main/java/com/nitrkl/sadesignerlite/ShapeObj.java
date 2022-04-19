@@ -18,6 +18,7 @@ class ShapeObj {
     Type type;
     WorkArea decompose;
     ArrayList<ShapeObj> inDataFlow, outDataFlow;
+    VarType varType;
 
     @Override
     public int hashCode() {
@@ -41,4 +42,9 @@ class ShapeObj {
         return Objects.equals(this.Name, other.Name);
     }
     
+    public ShapeObj containsName(String name) {
+        for (ShapeObj s: inDataFlow) if (s.Name.equals(name)) return s;
+        for (ShapeObj s: outDataFlow) if (s.Name.equals(name)) return s;
+        return null;
+    }
 }

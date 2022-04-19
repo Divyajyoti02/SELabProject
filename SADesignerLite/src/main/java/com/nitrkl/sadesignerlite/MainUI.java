@@ -400,13 +400,18 @@ public class MainUI extends javax.swing.JFrame {
 
     private void ExternalOutputButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExternalOutputButtonActionPerformed
         // TODO add your handling code here:
+        if (!ExternalOutputButton.isSelected()) workArea.mode = 0; else workArea.mode = 6;
+        System.out.println(workArea.mode);
         selectOne(ExternalOutputButton, buttons);
+        System.out.println(DataProcessButton.isSelected() + " " + ExternalEntityButton.isSelected() + " " + ExternalOutputButton.isSelected());
     }//GEN-LAST:event_ExternalOutputButtonActionPerformed
 
     private void DataProcessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataProcessButtonActionPerformed
         // TODO add your handling code here:
-        if (DataFlowButton.isSelected()) workArea.mode = 0; else workArea.mode = 2;
+        if (!DataProcessButton.isSelected()) workArea.mode = 0; else workArea.mode = 2;
+        System.out.println(workArea.mode);
         selectOne(DataProcessButton, buttons);
+        System.out.println(DataProcessButton.isSelected() + " " + ExternalEntityButton.isSelected() + " " + ExternalOutputButton.isSelected());
     }//GEN-LAST:event_DataProcessButtonActionPerformed
 
     private void DataStoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataStoreButtonActionPerformed
@@ -428,11 +433,15 @@ public class MainUI extends javax.swing.JFrame {
             ), "deleteShape"
         );
         workArea.getActionMap().put("deleteShape", new deleteShape());
+        workArea.mode = 0; 
+        System.out.println(workArea.mode);
         WorkSpace.getViewport().add(workArea);
         WorkSpace.setVisible(true);
         this.setTitle("SADesignerLite - Untitled");
         jSplitPane2.setDividerLocation(jSplitPane2.getDividerLocation());
         gc = new GraphicController(workArea);
+        for (javax.swing.JToggleButton b: buttons) b.setSelected(false);
+        System.out.println(DataProcessButton.isSelected() + " " + ExternalEntityButton.isSelected() + " " + ExternalOutputButton.isSelected());
     }//GEN-LAST:event_NewItemActionPerformed
 
     private void DDItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DDItemActionPerformed
@@ -462,7 +471,10 @@ public class MainUI extends javax.swing.JFrame {
 
     private void ExternalEntityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExternalEntityButtonActionPerformed
         // TODO add your handling code here:
+        if (!ExternalEntityButton.isSelected()) workArea.mode = 0; else workArea.mode = 1;
+        System.out.println(workArea.mode);
         selectOne(ExternalEntityButton, buttons);
+        System.out.println(DataProcessButton.isSelected() + " " + ExternalEntityButton.isSelected() + " " + ExternalOutputButton.isSelected());
     }//GEN-LAST:event_ExternalEntityButtonActionPerformed
 
     private void LabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LabelButtonActionPerformed

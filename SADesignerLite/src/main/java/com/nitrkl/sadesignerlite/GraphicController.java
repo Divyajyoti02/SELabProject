@@ -84,7 +84,7 @@ public class GraphicController extends MouseInputAdapter{
         System.out.println("CHECK -- Mouse pressed " + e.getPoint());
         x = null;
         p = e.getPoint();
-        if(component.mode != 4 && component.mode != 6)
+        if(component.mode != 4)
             x = component.dfd.findShapeAnchor(p).shape;
         if(x != null) {
             ShapeObj r = x;
@@ -111,15 +111,10 @@ public class GraphicController extends MouseInputAdapter{
                     temp = new DataFlow(p, p);
                     component.dfd.arrShapes.add(temp);
                     break;
-                /*case 6:
-                    temp = new CtrlArrow(p, p, "Arrow");
-                    component.shapes.add(temp);
-                    break;
-                case 7:
-                    temp = new Module(p.x,p.y,0,0,"Module");
-                    component.shapes.add(temp);
-                    break;
-                */
+                case 6:
+                    System.out.println("Create");
+                    temp = new ExternalOutput(p.x, p.y, 0, 0);
+                    component.dfd.arrShapes.add(temp);
             }
             dragging = true;
             constructing = true;
@@ -146,15 +141,21 @@ public class GraphicController extends MouseInputAdapter{
                 else {
                    
                 }
-            component.insertDataProcess((DataProcess) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
-            }
+                switch(component.mode){
+                        case 1:  component.insertExternalEntity((ExternalEntity) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+                        break;
+                        case 2: component.insertDataProcess((DataProcess) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+                        break;
+                        case 6: System.out.println("Release");
+                            component.insertExternalOutput((ExternalOutput) component.dfd.arrShapes.get(component.dfd.arrShapes.size() - 1));
+                }
         } else {
                 component.repaint();
         }
         component.repaint();
         constructing = false;
     }
- 
+}
     public void mouseDragged(MouseEvent e) {
         System.out.println("CHECK -- Mouse dragged " + e.getPoint());
         if (dragging) {
@@ -165,18 +166,21 @@ public class GraphicController extends MouseInputAdapter{
             }
             else {
             switch (component.mode) {
-                case 0:
-                    break;
                 case 1:
                     temp.resize(new Point(e.getX(),e.getY()));
+                    break;
                 case 2:
                     temp.resize(new Point(e.getX(),e.getY()));
+                    break;
                 case 3:
                     temp.resize(new Point(e.getX(),e.getY()));
+                    break;
                 case 4:
                     temp.resize(new Point(e.getX(),e.getY()));
+                    break;
                 case 6:
                     temp.resize(new Point(e.getX(),e.getY()));
+                    break;
                 case 7:
                     temp.resize(new Point(e.getX(),e.getY()));
             }

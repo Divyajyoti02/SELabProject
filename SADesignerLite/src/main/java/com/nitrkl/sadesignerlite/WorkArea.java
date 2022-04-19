@@ -120,8 +120,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         isChanged = true;
     }
     
-    void insertExternalEntity(Positions ps) {
-        ExternalEntity ee = new ExternalEntity(ps);
+    void insertExternalEntity(ExternalEntity ee) {
         ee.Name = "";
         while(true) {
             ee.Name = javax.swing.JOptionPane.showInputDialog(
@@ -140,20 +139,18 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             }
         }
         dfd.g.addNode(ee);
-        dfd.arrShapes.add(ee);
-        display();
+        repaint();
         isChanged = true;
     }
     
-    void insertExternalOutput(Positions ps) {
-        ExternalOutput eo = new ExternalOutput(ps);
+    void insertExternalOutput(ExternalOutput eo) {
         eo.Name = "";
         while(true) {
             eo.Name = javax.swing.JOptionPane.showInputDialog(
                 "Enter name of external output"
             );
             if (!"".equals(eo.Name) && !dd.Names.containsKey(eo.Name)) {
-                dd.Names.put(eo.Name, Type.DataProcess);
+                dd.Names.put(eo.Name, Type.ExternalOutput);
                 break;
             } else {
                 javax.swing.JOptionPane.showMessageDialog(
@@ -165,7 +162,6 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             }
         }
         dfd.g.addNode(eo);
-        dfd.arrShapes.add(eo);
         repaint();
         isChanged = true;
     }

@@ -61,7 +61,7 @@ public class MainUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         WorkSpace = new javax.swing.JScrollPane();
         LogArea = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        logArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         NewItem = new javax.swing.JMenuItem();
@@ -284,16 +284,16 @@ public class MainUI extends javax.swing.JFrame {
 
         jSplitPane2.setLeftComponent(jPanel3);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(null);
-        jTextArea1.addMouseListener(new java.awt.event.MouseAdapter() {
+        logArea.setEditable(false);
+        logArea.setColumns(20);
+        logArea.setRows(5);
+        logArea.setBorder(null);
+        logArea.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextArea1MouseEntered(evt);
+                logAreaMouseEntered(evt);
             }
         });
-        LogArea.setViewportView(jTextArea1);
+        LogArea.setViewportView(logArea);
 
         jSplitPane2.setRightComponent(LogArea);
 
@@ -437,11 +437,12 @@ public class MainUI extends javax.swing.JFrame {
     private void DebugButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DebugButtonActionPerformed
         // TODO add your handling code here:
         DebugButton.setSelected(false);
+        if (workArea != null) workArea.debug(logArea);
     }//GEN-LAST:event_DebugButtonActionPerformed
 
     private void NewItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewItemActionPerformed
         // TODO add your handling code here:
-        workArea = new WorkArea();
+        workArea = new WorkArea(logArea);
         workArea.getInputMap(javax.swing.JComponent.WHEN_IN_FOCUSED_WINDOW).put(
             javax.swing.KeyStroke.getKeyStroke(
                 java.awt.event.KeyEvent.VK_DELETE, 0
@@ -463,10 +464,10 @@ public class MainUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DDItemActionPerformed
 
-    private void jTextArea1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea1MouseEntered
+    private void logAreaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logAreaMouseEntered
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jTextArea1MouseEntered
+    }//GEN-LAST:event_logAreaMouseEntered
 
     private void selectOne(javax.swing.JToggleButton jtb, 
             javax.swing.JToggleButton[] jtbs) {
@@ -618,8 +619,8 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton tempT;
+    private javax.swing.JTextArea logArea;
     // End of variables declaration//GEN-END:variables
 
     private class deleteShape extends javax.swing.AbstractAction {

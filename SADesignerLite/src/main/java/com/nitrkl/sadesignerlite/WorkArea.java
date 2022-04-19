@@ -12,6 +12,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.io.Serializable;
 import javax.swing.Action;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -26,8 +27,9 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     ShapeObj currShape;
     int mode;
     DDWizardUI ddw;
+    javax.swing.JTextArea log;
 
-    WorkArea() {
+    WorkArea(javax.swing.JTextArea log) {
         dfd = new DFDBackend();
         dd = new DDBackend();
         isChanged = false;
@@ -41,6 +43,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         this.setSize(1024, 728);
         decomposeLevel = 0;
         mode = 0;
+        this.log = log;
     }
     
     boolean insertDataFlow(DataFlow df, ShapeAnchor sa1, ShapeAnchor sa2) {
@@ -56,9 +59,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             ) &&
             df.start.shape.type != Type.ExternalOutput
         ) {
-            System.out.println("Step1");
             dfd.updateConnects(df);
-            System.out.println("Step2");
             Position p1 = df.start.shape.position.topLeft;
             Position p2 = df.start.shape.position.bottomRight;
             switch(df.start.anchor) {
@@ -174,6 +175,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             }
         }
         dfd.g.addNode(ee);
+        System.out.println(dfd.g.numNodes());
         repaint();
         isChanged = true;
     }
@@ -257,5 +259,14 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
 
     Action deleteShape() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void debug(JTextArea logArea) {
+        debugIsolated();
+    }
+
+    private void debugIsolated() {
+        boolean d1 = dfd.g.debugIsolated(log);
+        if (!d1) log.append("No errors!");
     }
 }

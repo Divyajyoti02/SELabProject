@@ -20,6 +20,7 @@ class ShapeObj {
     Type type;
     WorkArea decompose;
     ArrayList<ShapeObj> inDataFlow, outDataFlow;
+    VarType varType;
 
     @Override
     public int hashCode() {
@@ -71,4 +72,9 @@ class ShapeObj {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
+    public ShapeObj containsName(String name) {
+        for (ShapeObj s: inDataFlow) if (s.Name.equals(name)) return s;
+        for (ShapeObj s: outDataFlow) if (s.Name.equals(name)) return s;
+        return null;
+    }
 }

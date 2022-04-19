@@ -10,12 +10,31 @@ package com.nitrkl.sadesignerlite;
  */
 public class DDWizardUI extends javax.swing.JFrame {
 
+    private WorkArea wa;
+    String name;
+    int mode;
+    DataFlow df;
+    boolean addNew, validName;
+
     /**
      * Creates new form DDWizard
      */
     public DDWizardUI() {
         initComponents();
+        this.setTitle("DDWizard");
+        name = "";
+        validName = false;
     }
+    
+    public DDWizardUI(int mode, DataFlow df) {
+        initComponents();
+        this.setTitle("DDWizard");
+        name = "";
+        this.mode = mode;
+        this.df = df;
+    }
+    
+    public void setParent(WorkArea wa) {this.wa = wa;}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +46,17 @@ public class DDWizardUI extends javax.swing.JFrame {
     private void initComponents() {
 
         Submit = new javax.swing.JButton();
-        DDWiz = new java.awt.Label();
-        name = new java.awt.Label();
-        Name = new java.awt.TextField();
-        dataType = new java.awt.Label();
-        DataType = new java.awt.TextField();
-        min = new java.awt.Label();
-        Min = new java.awt.TextField();
-        max = new java.awt.Label();
-        Max = new java.awt.TextField();
+        VarNameLabel = new javax.swing.JLabel();
+        NameField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Submit.setText("Submit");
         Submit.addActionListener(new java.awt.event.ActionListener() {
@@ -46,40 +65,34 @@ public class DDWizardUI extends javax.swing.JFrame {
             }
         });
 
-        DDWiz.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        DDWiz.setPreferredSize(new java.awt.Dimension(100, 25));
-        DDWiz.setText("DD Wizard");
+        VarNameLabel.setText("Variable Name");
 
-        name.setText("Name");
-
-        Name.setText("Enter Name");
-        Name.addActionListener(new java.awt.event.ActionListener() {
+        NameField.setText("Enter Name");
+        NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameActionPerformed(evt);
+                NameFieldActionPerformed(evt);
             }
         });
 
-        dataType.setText("Data Type");
+        jLabel1.setText("Variable Data Type");
 
-        DataType.setText("Enter Data Type");
-
-        min.setText("Min Occurrences");
-
-        Min.setText("Min");
-        Min.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose DataType", "Integer", "Float", "Boolean", "String", "Structure" }));
+        jComboBox1.setToolTipText("");
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MinActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
             }
         });
 
-        max.setText("Max Occurrences");
+        jLabel2.setText("Number of occurrences");
 
-        Max.setText("Max");
-        Max.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MaxActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Min");
+
+        jLabel4.setText("Max");
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,75 +102,157 @@ public class DDWizardUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(VarNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(78, 78, 78)
-                                .addComponent(Submit))
-                            .addComponent(dataType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(DataType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(DDWiz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65))))
+                                .addComponent(jLabel4)
+                                .addGap(76, 76, 76)
+                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(Submit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(DDWiz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(VarNameLabel)
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(dataType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(DataType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(Min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(Submit))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(Max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(Submit)
+                .addGap(22, 22, 22))
         );
-
-        max.getAccessibleContext().setAccessibleName("Max Occurrences");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitActionPerformed
         // TODO add your handling code here:
+        if (!validName) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid variable name", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            NameField.requestFocusInWindow();
+        } else if (jComboBox1.getSelectedItem().toString().equals("Choose DataType")){
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid data type Selected!", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            jComboBox1.requestFocusInWindow();
+        } else {
+            int jspin1 = (Integer) jSpinner1.getValue();
+            int jspin2 = (Integer) jSpinner2.getValue();
+            if (jspin1 > jspin2) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Min is greater than max!", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jSpinner1.requestFocusInWindow();
+            } else if (jspin2 == 0){
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Both values can't be zero!", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jSpinner2.requestFocusInWindow();
+            } else {
+                wa.dd.dd.put(name, new DDEntry(VarType.valueOf((String) jComboBox1.getSelectedItem()), (Integer) jSpinner1.getValue(), (Integer) jSpinner2.getValue()));
+                if (addNew) {wa.dd.structs.put(name, new StructEntry(name));}
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_SubmitActionPerformed
 
-    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NameActionPerformed
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void MinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MinActionPerformed
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MinActionPerformed
-
-    private void MaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MaxActionPerformed
+        name = NameField.getText();
+        if (name.isEmpty() || name.contains(" ")) {
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "Invalid variable name", 
+                "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            NameField.requestFocusInWindow();
+        }
+        addNew = !wa.dd.Names.containsKey(name);
+        if (!addNew) {
+            if (mode == 0) {
+                javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid variable name", 
+                    "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+                jComboBox1.setEditable(true);
+                NameField.setText("");
+                NameField.requestFocusInWindow();
+                validName = true;
+            } else {
+                ShapeObj s;
+                if (mode == 1) s = df.end.shape.containsName(name);
+                else s = df.start.shape.containsName(name);
+                if (s == null) {
+                    javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Invalid variable name", 
+                        "Error", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                    );
+                    jComboBox1.setEditable(true);
+                    NameField.setText("");
+                    NameField.requestFocusInWindow();
+                } else {
+                    jComboBox1.setSelectedItem(s.varType.toString());
+                    jComboBox1.setEditable(false);
+                    validName = true;
+                }
+            }
+        } else {
+            validName = true;
+        }
+    }//GEN-LAST:event_NameFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,15 +291,15 @@ public class DDWizardUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label DDWiz;
-    private java.awt.TextField DataType;
-    private java.awt.TextField Max;
-    private java.awt.TextField Min;
-    private java.awt.TextField Name;
+    private javax.swing.JTextField NameField;
     private javax.swing.JButton Submit;
-    private java.awt.Label dataType;
-    private java.awt.Label max;
-    private java.awt.Label min;
-    private java.awt.Label name;
+    private javax.swing.JLabel VarNameLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     // End of variables declaration//GEN-END:variables
 }

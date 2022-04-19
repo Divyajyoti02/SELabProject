@@ -53,17 +53,17 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         ) {
             dfd.updateConnects(df);
             if (df.start.shape.type == Type.DataProcess) {
-                if (df.end.shape.type == Type.DataProcess) DDWizard(0);
-                else DDWizard(1);
-            } else DDWizard(2);
-            df.decompose = null;
-            df.start.shape.outDataFlow.add(df);
-            df.end.shape.inDataFlow.add(df);
-            dfd.g.addEdge(new TwoPath(df.start.shape, df.end.shape));
-            dfd.arrShapes.add(df);
-            repaint();
-            isChanged = true;
-            return true;
+                if (df.end.shape.type == Type.DataProcess) new DDWizardUI(0, df);
+                else new DDWizardUI(1, df);
+            } else new DDWizardUI(2, df);
+        df.decompose = null;
+        df.start.shape.outDataFlow.add(df);
+        df.end.shape.inDataFlow.add(df);
+        dfd.g.addEdge(new TwoPath(df.start.shape, df.end.shape));
+        dfd.arrShapes.add(df);
+        repaint();
+        isChanged = true;
+        return true;
         } else return false;
     }
     
@@ -175,10 +175,6 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     }
     
     
-
-    void DDWizard(int mode) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     void display() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

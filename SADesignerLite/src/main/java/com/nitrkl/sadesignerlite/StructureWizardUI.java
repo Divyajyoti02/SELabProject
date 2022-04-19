@@ -60,6 +60,11 @@ public class StructureWizardUI extends javax.swing.JFrame {
         });
 
         confirmB.setText("Confirm");
+        confirmB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,6 +106,11 @@ public class StructureWizardUI extends javax.swing.JFrame {
     private void removeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_removeBActionPerformed
+
+    private void confirmBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_confirmBActionPerformed
 
     /**
      * @param args the command line arguments

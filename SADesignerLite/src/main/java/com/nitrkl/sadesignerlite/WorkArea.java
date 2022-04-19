@@ -115,8 +115,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
             }
         }
         dfd.g.addNode(ds);
-        dfd.arrShapes.add(ds);
-        display();
+        repaint();
         isChanged = true;
     }
     
@@ -184,6 +183,7 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
         int i;
         for(ShapeObj s: dfd.arrShapes) {
             //if(s.equals(currShape)) s.draw(g);
+            System.out.println(s.type);
             s.draw(g);
         }
     }

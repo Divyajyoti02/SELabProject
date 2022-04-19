@@ -416,6 +416,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void DataStoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataStoreButtonActionPerformed
         // TODO add your handling code here:
+        if (!DataStoreButton.isSelected()) workArea.mode = 0; else workArea.mode = 3;
         selectOne(DataStoreButton, buttons);
     }//GEN-LAST:event_DataStoreButtonActionPerformed
 

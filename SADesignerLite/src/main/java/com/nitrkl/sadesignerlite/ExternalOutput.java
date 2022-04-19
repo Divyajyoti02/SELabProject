@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 
 /**
  *
@@ -25,17 +26,12 @@ class ExternalOutput extends ShapeObj {
         position = ps;
     }
     
-    public void draw(Graphics2D g){
+    public void draw(Graphics g){
         System.out.println("DrawinfpaRAL");
-        Path2D.Double parallelogram = new Path2D.Double();
-        int x1 = position.topLeft.x , y1 = position.topLeft.y, x2 = position.bottomRight.x, y2 = position.bottomRight.x;
+        int x1 = position.topLeft.x , y1 = position.topLeft.y, x2 = position.bottomRight.x, y2 = position.bottomRight.y;
         if (x1 < x2 && y1 < y2) {
-        parallelogram.moveTo(x1, y2);
-        parallelogram.lineTo((3*x1 + x2)/4,y1);
-        parallelogram.lineTo(x2, y1);
-        parallelogram.lineTo((x1+ 3*x2)/4, y2);
-        parallelogram.closePath();
-        g.draw(parallelogram);
+            int xs[] = {(3*x1 + x2)/4, x2, (x1+ 3*x2)/4, x1}, ys[] = {y1, y1, y2, y2};
+            g.drawPolygon(xs, ys, 4);
         
         //name
         if (Name != null) {

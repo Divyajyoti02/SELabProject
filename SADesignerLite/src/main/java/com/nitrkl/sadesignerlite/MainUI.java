@@ -14,6 +14,7 @@ public class MainUI extends javax.swing.JFrame {
      * Creates new form MainUI
      * Potato Comment
      */
+    StructureWizardUI stw;
     public MainUI() {
         initComponents();
         this.buttons = new javax.swing.JToggleButton[]{
@@ -55,6 +56,7 @@ public class MainUI extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         DecomposeBar = new javax.swing.JToolBar();
         DecomposeButton = new javax.swing.JToggleButton();
+        tempT = new javax.swing.JButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         WorkSpace = new javax.swing.JScrollPane();
@@ -199,6 +201,13 @@ public class MainUI extends javax.swing.JFrame {
         });
         DecomposeBar.add(DecomposeButton);
 
+        tempT.setText("Structure Wizard");
+        tempT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tempTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout RibbonLayout = new javax.swing.GroupLayout(Ribbon);
         Ribbon.setLayout(RibbonLayout);
         RibbonLayout.setHorizontalGroup(
@@ -223,13 +232,16 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(tempT)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RibbonLayout.setVerticalGroup(
             RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addComponent(jSeparator2)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RibbonLayout.createSequentialGroup()
+            .addComponent(jSeparator3)
+            .addGroup(RibbonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(RibbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(RibbonLayout.createSequentialGroup()
@@ -246,9 +258,11 @@ public class MainUI extends javax.swing.JFrame {
                     .addGroup(RibbonLayout.createSequentialGroup()
                         .addComponent(DecomposeText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(RibbonLayout.createSequentialGroup()
+                        .addComponent(tempT)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addComponent(jSeparator3)
         );
 
         jSplitPane2.setDividerLocation(300);
@@ -526,6 +540,12 @@ public class MainUI extends javax.swing.JFrame {
         workArea.saveAs();
     }//GEN-LAST:event_SaveAsItemActionPerformed
 
+    private void tempTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempTActionPerformed
+        // TODO add your handling code here:
+        stw = new StructureWizardUI();
+        stw.setVisible(true);
+    }//GEN-LAST:event_tempTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -599,6 +619,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton tempT;
     // End of variables declaration//GEN-END:variables
 
     private class deleteShape extends javax.swing.AbstractAction {

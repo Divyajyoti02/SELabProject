@@ -145,9 +145,10 @@ class DFDBackend implements Serializable {
                         ps.paths.add(new Path(new TwoPath(s1, key.Vedge)));
                         for (Path p: connects.get(key).paths) {
                             if (p.pType == PathType.OnePath) {
-                                connects.get(
-                                    new TwoPath(s1, key.Vedge)
-                                ).paths.add(
+                                TwoPath tp = new TwoPath(s1, key.Vedge);
+                                if (connects.containsKey(tp)) 
+                                    connects.put(key, new Paths());
+                                connects.get(tp).paths.add(
                                     new Path(new TwoPath(df, p.onePath))
                                 );
                             }
@@ -168,9 +169,12 @@ class DFDBackend implements Serializable {
                     ps.paths.add(new Path(new TwoPath(key.Vedge,s2)));
                     for (Path p: connects.get(key).paths) {
                         if (p.pType == PathType.OnePath) {
-                            connects.get(
-                                new TwoPath(key.Uedge, s2)
-                            ).paths.add(new Path(new TwoPath(p.onePath, df)));
+                            TwoPath tp = new TwoPath(key.Uedge, s2);
+                            if (connects.containsKey(tp)) 
+                                connects.put(key, new Paths());
+                            connects.get(tp).paths.add(
+                                new Path(new TwoPath(p.onePath, df))
+                            );
                         }
                     }
                 }

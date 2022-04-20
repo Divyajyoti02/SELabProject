@@ -40,6 +40,22 @@ public class WorkArea extends javax.swing.JPanel implements Serializable {
     String filename, filepath;
     javax.swing.JTextArea log;
 
+    WorkArea() {
+        dfd = new DFDBackend();
+        dd = new DDBackend();
+        isChanged = false;
+        this.setBackground(Color.white);
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        Dimension d = new Dimension(1024, 728);
+        this.setMinimumSize(d);
+        this.setMaximumSize(d);
+        this.setPreferredSize(d);
+        this.setVisible(true);
+        this.setSize(1024, 728);
+        decomposeLevel = 0;
+        mode = 0;
+    }
+    
     WorkArea(javax.swing.JTextArea log) {
         dfd = new DFDBackend();
         dd = new DDBackend();

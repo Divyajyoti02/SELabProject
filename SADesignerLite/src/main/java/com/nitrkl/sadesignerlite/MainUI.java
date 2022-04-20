@@ -61,7 +61,6 @@ public class MainUI extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         DecomposeBar = new javax.swing.JToolBar();
         DecomposeButton = new javax.swing.JToggleButton();
-        tempT = new javax.swing.JButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         WorkSpace = new javax.swing.JScrollPane();
@@ -206,13 +205,6 @@ public class MainUI extends javax.swing.JFrame {
         });
         DecomposeBar.add(DecomposeButton);
 
-        tempT.setText("Structure Wizard");
-        tempT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tempTActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout RibbonLayout = new javax.swing.GroupLayout(Ribbon);
         Ribbon.setLayout(RibbonLayout);
         RibbonLayout.setHorizontalGroup(
@@ -237,8 +229,6 @@ public class MainUI extends javax.swing.JFrame {
                     .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(tempT)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RibbonLayout.setVerticalGroup(
@@ -263,10 +253,7 @@ public class MainUI extends javax.swing.JFrame {
                     .addGroup(RibbonLayout.createSequentialGroup()
                         .addComponent(DecomposeText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RibbonLayout.createSequentialGroup()
-                        .addComponent(tempT)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(DecomposeBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -592,12 +579,6 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OpenItemActionPerformed
     }
 
-    private void tempTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tempTActionPerformed
-        // TODO add your handling code here:
-        stw = new StructureWizardUI();
-        stw.setVisible(true);
-    }//GEN-LAST:event_tempTActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -670,7 +651,6 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JButton tempT;
     private javax.swing.JTextArea logArea;
     // End of variables declaration//GEN-END:variables
 

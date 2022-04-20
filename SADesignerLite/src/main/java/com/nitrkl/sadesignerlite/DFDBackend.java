@@ -166,7 +166,7 @@ class DFDBackend implements Serializable {
                     !connects.get(key).paths.isEmpty()
                 ) {
                     Paths ps = new Paths();
-                    ps.paths.add(new Path(new TwoPath(key.Vedge,s2)));
+                    ps.paths.add(new Path(new TwoPath(key.Uedge,s2)));
                     for (Path p: connects.get(key).paths) {
                         if (p.pType == PathType.OnePath) {
                             TwoPath tp = new TwoPath(key.Uedge, s2);
